@@ -1,17 +1,11 @@
 package com.groundzero.github.feature.search.api
 
 import com.google.gson.annotations.SerializedName
+import com.groundzero.github.feature.search.data.Repo
 
 data class SearchResponse(
-    val id: Long,
-    val name: String,
-    @SerializedName("full_name")
-    val fullName: String,
-    @SerializedName("html_url")
-    val htmlUrl: String,
-    val description: String,
-    @SerializedName("fork")
-    val isFork: Boolean,
-    @SerializedName("created_at")
-    val createdAt: String
+    @SerializedName("total_count")
+    val totalCount: Long,
+    @SerializedName("items")
+    val repositories: List<Repo>
 )

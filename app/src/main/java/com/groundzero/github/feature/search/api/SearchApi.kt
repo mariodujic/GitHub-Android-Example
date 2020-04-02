@@ -10,6 +10,6 @@ interface SearchApi {
     suspend fun searchQueryRepositories(
         @Query("q") query: String,
         @Query("page") page: Int
-    ): Response<List<SearchResponse>>
+    ): Response<SearchResponse>
 
 }

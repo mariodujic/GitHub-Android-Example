@@ -7,6 +7,6 @@ import com.groundzero.github.feature.search.api.SearchResponse
 import javax.inject.Inject
 
 class SearchDataSource @Inject constructor(private val api: SearchApi) : BaseDataSource() {
-    suspend fun searchQuery(query: String): Result<List<SearchResponse>> =
-        getResult { api.searchQueryRepositories(query, 2) }
+    suspend fun searchQuery(query: String) =
+        getResult { api.searchQueryRepositories(query, 1) }
 }
