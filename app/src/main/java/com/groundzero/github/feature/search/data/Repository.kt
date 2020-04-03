@@ -9,7 +9,8 @@ import java.io.Serializable
 
 @Entity(tableName = "repository")
 data class Repository(
-    @PrimaryKey(autoGenerate = false)
+    @PrimaryKey(autoGenerate = true)
+    val databaseId: Long,
     val id: Long,
     val name: String? = null,
     @SerializedName("full_name")

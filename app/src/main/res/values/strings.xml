@@ -15,4 +15,5 @@
     <string name="loading_dialog_search_repository">Loading repositories</string>
     // Toast messages
     <string name="warning_message_search_repository">Error while loading repositories</string>
+    <string name="query_empty_warning">Query can\'t be empty</string>
 </resources>

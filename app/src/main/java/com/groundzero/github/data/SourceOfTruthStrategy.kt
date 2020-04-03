@@ -5,10 +5,11 @@ import androidx.lifecycle.liveData
 import androidx.lifecycle.map
 import kotlinx.coroutines.Dispatchers
 
-fun <T, C> resultLiveDataPersistant(
+fun <T, C> resultLiveDataPersistent(
     networkCall: suspend () -> Result<C>,
     saveLocal: suspend (C) -> Unit,
-    observeLocal: suspend () -> LiveData<T>
+    observeLocal: suspend () -> LiveData<T>,
+    removeLocal: (suspend () -> Unit)? = null
 ): LiveData<Result<T>> =
 
     liveData(Dispatchers.IO) {
@@ -22,7 +23,8 @@ fun <T, C> resultLiveDataPersistant(
 
         if (responseStatus.status == Result.Status.SUCCESS) {
             val networkSource = Result.success(responseStatus.data)
-            if(responseStatus.data != null) {
+            if (responseStatus.data != null) {
+                removeLocal?.invoke()
                 saveLocal.invoke(networkSource.data!!)
             }
         } else if (responseStatus.status == Result.Status.ERROR) {
@@ -30,20 +32,4 @@ fun <T, C> resultLiveDataPersistant(
         }
 
         emitSource(source)
-    }
-
-fun <T> resultLiveDataRemote(networkCall: suspend () -> Result<T>): LiveData<Result<T>> =
-
-    liveData(Dispatchers.IO) {
-
-        emit(Result.loading())
-        val responseStatus = networkCall.invoke()
-
-        if (responseStatus.status == Result.Status.SUCCESS) {
-            Result.success(responseStatus.data!!)
-            val source = Result.success(responseStatus.data)
-            emit(source)
-        } else if (responseStatus.status == Result.Status.ERROR) {
-            emit(Result.error(responseStatus.message!!))
-        }
     }

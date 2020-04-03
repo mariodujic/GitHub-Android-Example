@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.RecyclerView
 import com.groundzero.github.R
 import com.groundzero.github.base.BaseFragment
 import com.groundzero.github.data.Result
@@ -24,30 +25,65 @@ class SearchFragment : BaseFragment(), SearchListener {
         searchRepositoryRecyclerView.adapter = adapter
         val viewModel: SearchViewModel = injectViewModel(viewModelFactory)
         viewModel.also {
-            observeSearchQuery("Android", it)
+            observeSearchQuery(it, true)
             implementListeners(this, it)
+            recyclerViewListener(this, it)
         }
     }.root
 
-    private fun observeSearchQuery(query: String, viewModel: SearchViewModel) {
-        viewModel.searchRepository(query, 1).observe(viewLifecycleOwner, Observer {
-            when (it.status) {
-                Result.Status.SUCCESS -> {
-                    if (it.data != null) {
-                        adapter.submitList(it.data)
+    private fun observeSearchQuery(
+        viewModel: SearchViewModel,
+        restartList: Boolean
+    ) {
+        viewModel.searchRepository(restartList)
+            .observe(viewLifecycleOwner, Observer {
+                when (it.status) {
+                    Result.Status.LOADING -> {
+                        showLoadingDialog(R.string.loading_dialog_search_repository)
+                        viewModel.loadingData = true
+                    }
+                    Result.Status.SUCCESS -> {
+                        cancelLoadingScreen()
+                        if (it.data != null) {
+                            adapter.submitList(it.data)
+                        }
+                        viewModel.loadingData = false
+                    }
+                    Result.Status.ERROR -> {
+                        cancelLoadingScreen()
+                        showToastMessage(R.string.warning_message_search_repository)
+                        viewModel.loadingData = false
                     }
                 }
-                Result.Status.ERROR -> {
-                    showToastMessage(R.string.warning_message_search_repository)
-                }
-            }
-        })
+            })
     }
 
     private fun implementListeners(binding: FragmentSearchBinding, viewModel: SearchViewModel) {
         binding.searchRepositoryButton.setOnClickListener {
-            observeSearchQuery(binding.searchQuery.text.toString(), viewModel)
+            binding.searchQuery.text.toString().also {
+                if (it != "") {
+                    viewModel.setQuery(it)
+                    observeSearchQuery(viewModel, true)
+                } else {
+                    showToastMessage(R.string.query_empty_warning)
+                }
+            }
         }
+    }
+
+    private fun recyclerViewListener(binding: FragmentSearchBinding, viewModel: SearchViewModel) {
+        binding.searchRepositoryRecyclerView.addOnScrollListener(object :
+            RecyclerView.OnScrollListener() {
+            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+                super.onScrollStateChanged(recyclerView, newState)
+
+                if (!recyclerView.canScrollVertically(1)) {
+                    if (!viewModel.loadingData) {
+                        observeSearchQuery(viewModel, false)
+                    }
+                }
+            }
+        })
     }
 
     override fun onSearchItemClick(repository: Repository) {
