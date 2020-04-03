@@ -11,11 +11,11 @@ class SearchRepository @Inject constructor(
     private val dataSource: SearchDataSource,
     private val repositoryDao: RepositoryDao
 ) {
-    fun searchQuery(query: String, page: Int, perPage: Int) =
+    fun searchQuery(query: String, page: Int, perPage: Int, sort: SearchSort) =
         resultLiveDataPersistent(
-            networkCall = { dataSource.searchQuery(query, page, perPage) },
+            networkCall = { dataSource.searchQuery(query, page, perPage, sort) },
             saveLocal = { repositoryDao.insertRepositories(it.repositories) },
-            observeLocal = { LivePagedListBuilder(repositoryDao.reposByName(), perPage).build() }
+            observeLocal = { LivePagedListBuilder(repositoryDao.getRepositories(), perPage).build() }
         )
 
     fun deleteData() = CoroutineScope(IO).launch {

@@ -4,6 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
 import com.groundzero.github.feature.search.data.SearchRepository
+import com.groundzero.github.feature.search.data.SearchSort
 import javax.inject.Inject
 
 
@@ -12,9 +13,10 @@ class SearchViewModel @Inject constructor(private val repository: SearchReposito
     var loadingData = false
     private val queryLiveData = MutableLiveData<String>()
     private val pageLiveData = MutableLiveData<Int>()
-    private var page = 0
+    private var page = 1
     val repoResult = Transformations.switchMap(queryLiveData) { query ->
-        repository.searchQuery(query, page, 20)
+        println(page)
+        repository.searchQuery(query, page, 20, SearchSort.FORKS)
     }
 
     fun searchRepo(queryString: String) {
