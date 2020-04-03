@@ -1,4 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="medium_padding">16dp</dimen>
+    <dimen name="normal_padding">8dp</dimen>
+    <dimen name="minimal_padding">4dp</dimen>
+    <dimen name="highlighted_text">18sp</dimen>
+    <dimen name="card_radius">10dp</dimen>
+    <dimen name="card_elevation">5dp</dimen>
 </resources>

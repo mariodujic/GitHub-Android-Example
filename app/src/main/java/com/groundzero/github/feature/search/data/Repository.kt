@@ -1,8 +1,10 @@
 package com.groundzero.github.feature.search.data
 
 import com.google.gson.annotations.SerializedName
+import com.groundzero.github.feature.owner.data.Owner
+import java.io.Serializable
 
-data class Repo (
+data class Repository(
     val id: Long,
     val name: String,
     @SerializedName("full_name")
@@ -13,5 +15,6 @@ data class Repo (
     @SerializedName("fork")
     val isFork: Boolean,
     @SerializedName("created_at")
-    val createdAt: String
-)
+    val createdAt: String,
+    val owner: Owner
+) : Serializable

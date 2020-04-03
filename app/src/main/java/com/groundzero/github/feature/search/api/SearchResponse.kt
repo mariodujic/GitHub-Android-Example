@@ -1,11 +1,11 @@
 package com.groundzero.github.feature.search.api
 
 import com.google.gson.annotations.SerializedName
-import com.groundzero.github.feature.search.data.Repo
+import com.groundzero.github.feature.search.data.Repository
 
 data class SearchResponse(
     @SerializedName("total_count")
     val totalCount: Long,
     @SerializedName("items")
-    val repositories: List<Repo>
+    val repositories: List<Repository>
 )
