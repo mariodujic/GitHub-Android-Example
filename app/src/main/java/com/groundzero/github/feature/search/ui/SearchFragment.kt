@@ -13,16 +13,24 @@ import com.groundzero.github.data.Result
 import com.groundzero.github.databinding.FragmentSearchBinding
 import com.groundzero.github.di.helper.injectViewModel
 import com.groundzero.github.feature.search.data.Repository
+import com.groundzero.github.view.RecyclerItemDecorator
 
 class SearchFragment : BaseFragment(), SearchListener {
 
-    private val adapter = SearchAdapter(this)
+    private val searchAdapter = SearchAdapter(this)
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? = FragmentSearchBinding.inflate(inflater, container, false).apply {
-        searchRepositoryRecyclerView.adapter = adapter
+        searchRepositoryRecyclerView.apply {
+            adapter = searchAdapter
+            addItemDecoration(
+                RecyclerItemDecorator(
+                    resources.getDimension(R.dimen.minimal_padding).toInt()
+                )
+            )
+        }
         val viewModel: SearchViewModel = injectViewModel(viewModelFactory)
         viewModel.also {
             observeSearchQuery(it)
@@ -40,7 +48,7 @@ class SearchFragment : BaseFragment(), SearchListener {
                 Result.Status.SUCCESS -> {
                     cancelLoadingScreen()
                     if (it.data != null) {
-                        adapter.submitList(it.data)
+                        searchAdapter.submitList(it.data)
                     }
                     viewModel.loadingData = false
                 }

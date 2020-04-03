@@ -6,5 +6,5 @@
     <dimen name="highlighted_text">18sp</dimen>
     <dimen name="small_text">13sp</dimen>
     <dimen name="card_radius">10dp</dimen>
-    <dimen name="card_elevation">5dp</dimen>
+    <dimen name="card_elevation">3dp</dimen>
 </resources>
