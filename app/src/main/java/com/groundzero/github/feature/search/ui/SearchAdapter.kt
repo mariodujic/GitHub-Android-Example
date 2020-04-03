@@ -12,7 +12,7 @@ class SearchAdapter(private val listener: SearchListener) :
     PagedListAdapter<Repository, SearchAdapter.SearchViewHolder>(DIFF_CALLBACK) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SearchViewHolder =
-        SearchViewHolder(ItemSearchBinding.inflate(LayoutInflater.from(parent.context)), listener)
+        SearchViewHolder(ItemSearchBinding.inflate(LayoutInflater.from(parent.context), parent, false), listener)
 
     override fun onBindViewHolder(holder: SearchViewHolder, position: Int) {
 

@@ -31,9 +31,7 @@ class SearchFragment : BaseFragment(), SearchListener {
         }
     }.root
 
-    private fun observeSearchQuery(
-        viewModel: SearchViewModel
-    ) {
+    private fun observeSearchQuery(viewModel: SearchViewModel) {
         viewModel.repoResult.observe(viewLifecycleOwner, Observer {
             when (it.status) {
                 Result.Status.LOADING -> {
@@ -74,7 +72,7 @@ class SearchFragment : BaseFragment(), SearchListener {
                 super.onScrollStateChanged(recyclerView, newState)
 
                 if (!recyclerView.canScrollVertically(1)) {
-                    if(!viewModel.loadingData) {
+                    if (!viewModel.loadingData) {
                         viewModel.nextPage()
                         viewModel.loadingData = true
                     }
