@@ -30,7 +30,7 @@ class SearchFragment : BaseFragment(), SearchListener {
     }.root
 
     private fun observeSearchQuery(query: String, viewModel: SearchViewModel) {
-        viewModel.searchRepository(query).observe(viewLifecycleOwner, Observer {
+        viewModel.searchRepository(query, 1).observe(viewLifecycleOwner, Observer {
             when (it.status) {
                 Result.Status.LOADING -> showLoadingDialog(R.string.loading_dialog_search_repository)
                 Result.Status.SUCCESS -> {
