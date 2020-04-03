@@ -15,7 +15,6 @@ import com.groundzero.github.feature.search.data.Repository
 
 class SearchFragment : BaseFragment(), SearchListener {
 
-    private lateinit var viewModel: SearchViewModel
     private val adapter = SearchAdapter(this)
 
     override fun onCreateView(
@@ -23,15 +22,20 @@ class SearchFragment : BaseFragment(), SearchListener {
         savedInstanceState: Bundle?
     ): View? = FragmentSearchBinding.inflate(inflater, container, false).apply {
         searchRepositoryRecyclerView.adapter = adapter
-        viewModel = injectViewModel(viewModelFactory)
-        viewModel.searchQuery("hello").observe(viewLifecycleOwner, Observer {
-            println(it)
+        val viewModel: SearchViewModel = injectViewModel(viewModelFactory)
+        viewModel.also {
+            observeSearchQuery("Android", it)
+            implementListeners(this, it)
+        }
+    }.root
+
+    private fun observeSearchQuery(query: String, viewModel: SearchViewModel) {
+        viewModel.searchRepository(query).observe(viewLifecycleOwner, Observer {
             when (it.status) {
                 Result.Status.LOADING -> showLoadingDialog(R.string.loading_dialog_search_repository)
                 Result.Status.SUCCESS -> {
                     cancelLoadingScreen()
                     if (it.data != null) {
-                        println("Submitting data ${it.data}")
                         adapter.submitList(it.data.repositories)
                     }
                 }
@@ -41,7 +45,13 @@ class SearchFragment : BaseFragment(), SearchListener {
                 }
             }
         })
-    }.root
+    }
+
+    private fun implementListeners(binding: FragmentSearchBinding, viewModel: SearchViewModel) {
+        binding.searchRepositoryButton.setOnClickListener {
+            observeSearchQuery(binding.searchQuery.text.toString(), viewModel)
+        }
+    }
 
     override fun onSearchItemClick(repository: Repository) {
         val action = SearchFragmentDirections.actionSearchFragmentToRepositoryFragment(repository)

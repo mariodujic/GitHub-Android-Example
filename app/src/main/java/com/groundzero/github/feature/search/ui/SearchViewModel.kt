@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import com.groundzero.github.feature.search.data.SearchRepository
 import javax.inject.Inject
 
+
 class SearchViewModel @Inject constructor(private val repository: SearchRepository) : ViewModel() {
-    fun searchQuery(query: String) = repository.searchQuery(query)
+    fun searchRepository(query: String) = repository.searchQuery(query)
 }

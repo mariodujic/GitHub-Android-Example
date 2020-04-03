@@ -34,7 +34,7 @@
                 app:layout_constraintBottom_toBottomOf="parent">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/search_repository"
+                    android:id="@+id/search_query"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
             </com.google.android.material.textfield.TextInputLayout>
