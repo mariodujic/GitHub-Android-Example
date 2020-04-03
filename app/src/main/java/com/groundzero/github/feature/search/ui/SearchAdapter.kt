@@ -6,32 +6,37 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.groundzero.github.databinding.ItemSearchBinding
-import com.groundzero.github.feature.search.data.Repo
+import com.groundzero.github.feature.search.data.Repository
 
-class SearchAdapter : ListAdapter<Repo, SearchAdapter.SearchViewHolder>(DIFF_CALLBACK) {
+class SearchAdapter(private val listener: SearchListener) :
+    ListAdapter<Repository, SearchAdapter.SearchViewHolder>(DIFF_CALLBACK) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SearchViewHolder =
-        SearchViewHolder(ItemSearchBinding.inflate(LayoutInflater.from(parent.context)))
+        SearchViewHolder(ItemSearchBinding.inflate(LayoutInflater.from(parent.context)), listener)
 
     override fun onBindViewHolder(holder: SearchViewHolder, position: Int) {
 
-        val searchResponse: Repo? = getItem(position)
+        val searchResponse: Repository = getItem(position)
         holder.bind(searchResponse)
     }
 
-    class SearchViewHolder(private val binding: ItemSearchBinding) :
+    class SearchViewHolder(
+        private val binding: ItemSearchBinding,
+        private val listener: SearchListener
+    ) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(searchResponse: Repo?) {
-            binding.repo = searchResponse
+        fun bind(repository: Repository) {
+            binding.repo = repository
+            itemView.setOnClickListener { listener.onSearchItemClick(repository) }
         }
     }
 }
 
-private val DIFF_CALLBACK = object : DiffUtil.ItemCallback<Repo>() {
-    override fun areItemsTheSame(oldItem: Repo, newItem: Repo) =
+private val DIFF_CALLBACK = object : DiffUtil.ItemCallback<Repository>() {
+    override fun areItemsTheSame(oldItem: Repository, newItem: Repository) =
         oldItem.id == newItem.id
 
     override fun areContentsTheSame(
-        oldItem: Repo, newItem: Repo
+        oldItem: Repository, newItem: Repository
     ) = oldItem == newItem
 }

@@ -1,7 +1,15 @@
 <resources>
     <string name="app_name">GitHub</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    // Labels
     <string name="hint_search">Search</string>
+    <string name="repository_title">Title</string>
+    <string name="repository_user">User</string>
+    <string name="repository_description">Description</string>
+    // Buttons
+    <string name="repository_more_on_owner">More on owner</string>
+    <string name="repository_inspect_in_browser">Open repository in browser</string>
+    // Loading dialog messages
+    <string name="loading_dialog_search_repository">Loading repositories</string>
+    // Toast messages
+    <string name="warning_message_search_repository">Error while loading repositories</string>
 </resources>
