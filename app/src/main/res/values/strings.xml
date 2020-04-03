@@ -2,8 +2,8 @@
     <string name="app_name">GitHub</string>
     // Labels
     <string name="hint_search">Search</string>
-    <string name="repository_title">Title</string>
-    <string name="repository_user">User</string>
+    <string name="repository_title">Name</string>
+    <string name="repository_user">Full Name</string>
     <string name="repository_description">Description</string>
     // Buttons
     <string name="repository_more_on_owner">More on owner</string>

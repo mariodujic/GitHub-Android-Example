@@ -18,7 +18,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="@dimen/medium_padding"
-            android:text="@string/repository_title" />
+            android:text="@string/repository_title"
+            android:textAllCaps="true" />
 
         <TextView
             android:layout_width="match_parent"
@@ -33,7 +34,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="@dimen/medium_padding"
-            android:text="@string/repository_user" />
+            android:text="@string/repository_user"
+            android:textAllCaps="true" />
 
         <TextView
             android:layout_width="match_parent"
@@ -48,7 +50,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="@dimen/medium_padding"
-            android:text="@string/repository_description" />
+            android:text="@string/repository_description"
+            android:textAllCaps="true" />
 
         <TextView
             android:layout_width="match_parent"
