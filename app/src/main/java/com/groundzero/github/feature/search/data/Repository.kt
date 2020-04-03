@@ -16,5 +16,9 @@ data class Repository(
     val isFork: Boolean,
     @SerializedName("created_at")
     val createdAt: String,
-    val owner: Owner
+    val owner: Owner,
+    val watchers: Long,
+    val forks: Long,
+    @SerializedName("open_issues")
+    val issues: Long
 ) : Serializable

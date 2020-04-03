@@ -5,6 +5,9 @@
     <string name="repository_title">Name</string>
     <string name="repository_user">Full Name</string>
     <string name="repository_description">Description</string>
+    <string name="item_search_watchers">Watchers %s</string>
+    <string name="item_search_forks">Forks %s</string>
+    <string name="item_search_issues">Issues %s</string>
     // Buttons
     <string name="repository_more_on_owner">More on owner</string>
     <string name="repository_inspect_in_browser">Open repository in browser</string>

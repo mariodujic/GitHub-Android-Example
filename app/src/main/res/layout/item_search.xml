@@ -1,5 +1,6 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -24,24 +25,85 @@
                 android:layout_height="match_parent"
                 android:padding="@dimen/normal_padding">
 
+                <ImageView
+                    android:id="@+id/item_search_thumbnail"
+                    setAvatar="@{repo.owner.avatar}"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:ignore="ContentDescription" />
+
+                <TextView
+                    android:id="@+id/item_search_name_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/normal_padding"
+                    android:text="Repository name: "
+                    app:layout_constraintLeft_toRightOf="@id/item_search_thumbnail"
+                    app:layout_constraintTop_toTopOf="parent" />
+
                 <TextView
                     android:id="@+id/item_search_name"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:padding="@dimen/medium_padding"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
                     android:text="@{repo.name}"
-                    app:layout_constraintLeft_toLeftOf="parent" />
+                    app:layout_constraintLeft_toRightOf="@id/item_search_name_label"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/item_search_owner_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/normal_padding"
+                    android:text="Owner: "
+                    app:layout_constraintLeft_toRightOf="@id/item_search_thumbnail"
+                    app:layout_constraintTop_toBottomOf="@id/item_search_name_label" />
 
                 <TextView
                     android:id="@+id/item_search_owner"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginTop="@dimen/normal_padding"
-                    android:padding="@dimen/medium_padding"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:text="@{repo.owner.name}"
-                    app:layout_constraintTop_toBottomOf="@id/item_search_name" />
+                    app:layout_constraintLeft_toRightOf="@id/item_search_owner_label"
+                    app:layout_constraintTop_toBottomOf="@id/item_search_name_label" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/normal_padding"
+                    android:orientation="horizontal"
+                    app:layout_constraintLeft_toRightOf="@id/item_search_thumbnail"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/item_search_owner_label">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="left"
+                        android:text="@{@string/item_search_watchers(repo.watchers)}"
+                        android:textSize="@dimen/small_text" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="@{@string/item_search_forks(repo.forks)}"
+                        android:textSize="@dimen/small_text" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="right"
+                        android:text="@{@string/item_search_issues(repo.issues)}"
+                        android:textSize="@dimen/small_text" />
+                </LinearLayout>
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.cardview.widget.CardView>
     </RelativeLayout>
-
 </layout>
