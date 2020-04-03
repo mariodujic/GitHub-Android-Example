@@ -15,7 +15,7 @@ class SearchViewModel @Inject constructor(private val repository: SearchReposito
     private val pageLiveData = MutableLiveData<Int>()
     private var page = 1
     val repoResult = Transformations.switchMap(queryLiveData) { query ->
-        repository.searchQuery(query, page, 20, SearchSort.FORKS)
+        repository.searchQuery(query?:"Android", page, 20, SearchSort.FORKS)
     }
 
     fun searchRepo(queryString: String?) {
