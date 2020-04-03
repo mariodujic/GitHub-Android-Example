@@ -34,7 +34,7 @@ class SearchFragment : BaseFragment(), SearchListener {
     private fun observeSearchQuery(
         viewModel: SearchViewModel
     ) {
-        viewModel.repositoriesLive.observe(viewLifecycleOwner, Observer {
+        viewModel.repoResult.observe(viewLifecycleOwner, Observer {
             when (it.status) {
                 Result.Status.LOADING -> {
                     showLoadingDialog(R.string.loading_dialog_search_repository)
@@ -59,8 +59,7 @@ class SearchFragment : BaseFragment(), SearchListener {
         binding.searchRepositoryButton.setOnClickListener {
             binding.searchQuery.text.toString().also {
                 if (it != "") {
-                    viewModel.newRepositories(it)
-                    showLoadingDialog(R.string.loading_new_repositories)
+                    viewModel.searchRepo(it)
                 } else {
                     showToastMessage(R.string.query_empty_warning)
                 }
@@ -75,10 +74,9 @@ class SearchFragment : BaseFragment(), SearchListener {
                 super.onScrollStateChanged(recyclerView, newState)
 
                 if (!recyclerView.canScrollVertically(1)) {
-                    if (!viewModel.loadingData) {
-                        viewModel.updateRepository()
+                    if(!viewModel.loadingData) {
+                        viewModel.nextPage()
                         viewModel.loadingData = true
-                        showLoadingDialog(R.string.loading_more_repositories)
                     }
                 }
             }

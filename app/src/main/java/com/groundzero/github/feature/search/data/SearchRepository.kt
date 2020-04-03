@@ -1,32 +1,24 @@
 package com.groundzero.github.feature.search.data
 
-import com.groundzero.github.data.deleteLiveData
+import androidx.paging.LivePagedListBuilder
 import com.groundzero.github.data.resultLiveDataPersistent
-import com.groundzero.github.data.updateLiveDataPersistent
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers.IO
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class SearchRepository @Inject constructor(
     private val dataSource: SearchDataSource,
-    private val repositoryDao: RepositoryDao,
-    private val pageDao: PageDao
+    private val repositoryDao: RepositoryDao
 ) {
-    fun searchQuery(query: String, page: Int) =
+    fun searchQuery(query: String, page: Int, perPage: Int) =
         resultLiveDataPersistent(
-            networkCall = { dataSource.searchQuery(query, page) },
+            networkCall = { dataSource.searchQuery(query, page, perPage) },
             saveLocal = { repositoryDao.insertRepositories(it.repositories) },
-            observeLocal = { repositoryDao.getRepositories() }
+            observeLocal = { LivePagedListBuilder(repositoryDao.reposByName(), perPage).build() }
         )
 
-    fun updateQuery(query: String, page: Int) {
-        updateLiveDataPersistent(
-            networkCall = { dataSource.searchQuery(query, page) },
-            saveLocal = { repositoryDao.insertRepositories(it.repositories) }
-        )
-    }
-
-    fun deleteData() {
-        deleteLiveData(
-            deletePersistentData = { repositoryDao.deleteRepositories() }
-        )
+    fun deleteData() = CoroutineScope(IO).launch {
+        repositoryDao.deleteRepositories()
     }
 }

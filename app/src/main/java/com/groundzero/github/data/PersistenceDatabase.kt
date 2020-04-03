@@ -5,7 +5,6 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
-import com.groundzero.github.feature.search.data.PageDao
 import com.groundzero.github.feature.search.data.Repository
 import com.groundzero.github.feature.search.data.RepositoryConverter
 import com.groundzero.github.feature.search.data.RepositoryDao
@@ -15,7 +14,6 @@ import com.groundzero.github.feature.search.data.RepositoryDao
 abstract class PersistenceDatabase : RoomDatabase() {
 
     abstract fun getRepositoryDao(): RepositoryDao
-    abstract fun getPageDao(): PageDao
 
     companion object {
 

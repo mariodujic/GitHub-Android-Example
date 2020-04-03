@@ -1,5 +1,7 @@
 package com.groundzero.github.feature.search.ui
 
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
 import com.groundzero.github.feature.search.data.SearchRepository
 import javax.inject.Inject
@@ -7,24 +9,23 @@ import javax.inject.Inject
 
 class SearchViewModel @Inject constructor(private val repository: SearchRepository) : ViewModel() {
 
-    var loadingData: Boolean = false
-    private var currentPage: Int = -1
-    private var query: String = "Android"
-    val repositoriesLive = repository.searchQuery(query, currentPage)
-
-    fun updateRepository() {
-        incrementPage()
-        repository.updateQuery(query, currentPage)
+    var loadingData = false
+    private val queryLiveData = MutableLiveData<String>()
+    private val pageLiveData = MutableLiveData<Int>()
+    private var page = 0
+    val repoResult = Transformations.switchMap(queryLiveData) { query ->
+        repository.searchQuery(query, page, 20)
     }
 
-    fun newRepositories(query: String) {
-        setQuery(query)
-        resetPageCount()
+    fun searchRepo(queryString: String) {
         repository.deleteData()
-        repository.updateQuery(query, currentPage)
+        queryLiveData.postValue(queryString)
     }
 
-    private fun incrementPage() = apply { currentPage++ }
-    private fun resetPageCount() = apply { currentPage = 0 }
-    private fun setQuery(query: String) = apply { this.query = query }
+    fun nextPage() {
+        pageLiveData.postValue(++page)
+        queryLiveData.postValue(lastQueryValue())
+    }
+
+    private fun lastQueryValue(): String? = queryLiveData.value
 }

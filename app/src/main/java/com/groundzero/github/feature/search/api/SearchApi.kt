@@ -9,7 +9,7 @@ interface SearchApi {
     @GET("search/repositories")
     suspend fun searchQueryRepositories(
         @Query("q") query: String,
-        @Query("page") page: Int
+        @Query("page") page: Int,
+        @Query("per_page") itemsPerPage: Int
     ): Response<SearchResponse>
-
 }

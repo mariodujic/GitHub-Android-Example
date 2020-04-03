@@ -2,22 +2,24 @@ package com.groundzero.github.feature.search.ui
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.paging.PagedListAdapter
 import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.groundzero.github.databinding.ItemSearchBinding
 import com.groundzero.github.feature.search.data.Repository
 
 class SearchAdapter(private val listener: SearchListener) :
-    ListAdapter<Repository, SearchAdapter.SearchViewHolder>(DIFF_CALLBACK) {
+    PagedListAdapter<Repository, SearchAdapter.SearchViewHolder>(DIFF_CALLBACK) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SearchViewHolder =
         SearchViewHolder(ItemSearchBinding.inflate(LayoutInflater.from(parent.context)), listener)
 
     override fun onBindViewHolder(holder: SearchViewHolder, position: Int) {
 
-        val searchResponse: Repository = getItem(position)
-        holder.bind(searchResponse)
+        val searchResponse: Repository? = getItem(position)
+        if (searchResponse != null) {
+            holder.bind(searchResponse)
+        }
     }
 
     class SearchViewHolder(

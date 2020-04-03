@@ -5,7 +5,8 @@ import com.groundzero.github.feature.search.data.Repository
 
 data class SearchResponse(
     @SerializedName("total_count")
-    val totalCount: Long,
+    val totalCount: Int = 0,
     @SerializedName("items")
-    val repositories: List<Repository>
+    val repositories: List<Repository> = emptyList(),
+    val nextPage: Int? = null
 )
