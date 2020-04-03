@@ -11,6 +11,11 @@ class PersistenceModule {
 
     @Provides
     @Singleton
+    fun providePageDao(persistenceDatabase: PersistenceDatabase) =
+        persistenceDatabase.getPageDao()
+
+    @Provides
+    @Singleton
     fun provideRepositoryDao(persistenceDatabase: PersistenceDatabase) =
         persistenceDatabase.getRepositoryDao()
 

@@ -13,6 +13,8 @@
     <string name="repository_inspect_in_browser">Open repository in browser</string>
     // Loading dialog messages
     <string name="loading_dialog_search_repository">Loading repositories</string>
+    <string name="loading_more_repositories">Loading more repositories</string>
+    <string name="loading_new_repositories">Loading new repositories</string>
     // Toast messages
     <string name="warning_message_search_repository">Error while loading repositories</string>
     <string name="query_empty_warning">Query can\'t be empty</string>

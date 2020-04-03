@@ -25,45 +25,42 @@ class SearchFragment : BaseFragment(), SearchListener {
         searchRepositoryRecyclerView.adapter = adapter
         val viewModel: SearchViewModel = injectViewModel(viewModelFactory)
         viewModel.also {
-            observeSearchQuery(it, true)
+            observeSearchQuery(it)
             implementListeners(this, it)
             recyclerViewListener(this, it)
         }
     }.root
 
     private fun observeSearchQuery(
-        viewModel: SearchViewModel,
-        restartList: Boolean
+        viewModel: SearchViewModel
     ) {
-        viewModel.searchRepository(restartList)
-            .observe(viewLifecycleOwner, Observer {
-                when (it.status) {
-                    Result.Status.LOADING -> {
-                        showLoadingDialog(R.string.loading_dialog_search_repository)
-                        viewModel.loadingData = true
-                    }
-                    Result.Status.SUCCESS -> {
-                        cancelLoadingScreen()
-                        if (it.data != null) {
-                            adapter.submitList(it.data)
-                        }
-                        viewModel.loadingData = false
-                    }
-                    Result.Status.ERROR -> {
-                        cancelLoadingScreen()
-                        showToastMessage(R.string.warning_message_search_repository)
-                        viewModel.loadingData = false
-                    }
+        viewModel.repositoriesLive.observe(viewLifecycleOwner, Observer {
+            when (it.status) {
+                Result.Status.LOADING -> {
+                    showLoadingDialog(R.string.loading_dialog_search_repository)
                 }
-            })
+                Result.Status.SUCCESS -> {
+                    cancelLoadingScreen()
+                    if (it.data != null) {
+                        adapter.submitList(it.data)
+                    }
+                    viewModel.loadingData = false
+                }
+                Result.Status.ERROR -> {
+                    cancelLoadingScreen()
+                    showToastMessage(R.string.warning_message_search_repository)
+                    viewModel.loadingData = false
+                }
+            }
+        })
     }
 
     private fun implementListeners(binding: FragmentSearchBinding, viewModel: SearchViewModel) {
         binding.searchRepositoryButton.setOnClickListener {
             binding.searchQuery.text.toString().also {
                 if (it != "") {
-                    viewModel.setQuery(it)
-                    observeSearchQuery(viewModel, true)
+                    viewModel.newRepositories(it)
+                    showLoadingDialog(R.string.loading_new_repositories)
                 } else {
                     showToastMessage(R.string.query_empty_warning)
                 }
@@ -79,7 +76,9 @@ class SearchFragment : BaseFragment(), SearchListener {
 
                 if (!recyclerView.canScrollVertically(1)) {
                     if (!viewModel.loadingData) {
-                        observeSearchQuery(viewModel, false)
+                        viewModel.updateRepository()
+                        viewModel.loadingData = true
+                        showLoadingDialog(R.string.loading_more_repositories)
                     }
                 }
             }
