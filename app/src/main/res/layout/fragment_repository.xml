@@ -26,6 +26,7 @@
             android:layout_marginStart="@dimen/medium_padding"
             android:layout_marginEnd="@dimen/medium_padding"
             android:text="@{repository.name}"
+            android:textColor="@color/black"
             android:textSize="@dimen/highlighted_text" />
 
         <TextView
@@ -40,6 +41,7 @@
             android:layout_marginStart="@dimen/medium_padding"
             android:layout_marginEnd="@dimen/medium_padding"
             android:text="@{repository.fullName}"
+            android:textColor="@color/black"
             android:textSize="@dimen/highlighted_text" />
 
         <TextView
@@ -51,7 +53,10 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/medium_padding"
+            android:layout_marginEnd="@dimen/medium_padding"
             android:text="@{repository.description}"
+            android:textColor="@color/black"
             android:textSize="@dimen/highlighted_text" />
 
         <Button
