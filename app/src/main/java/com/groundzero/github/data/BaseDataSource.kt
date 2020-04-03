@@ -1,4 +1,4 @@
-package com.groundzero.github.common
+package com.groundzero.github.data
 
 import retrofit2.Response
 

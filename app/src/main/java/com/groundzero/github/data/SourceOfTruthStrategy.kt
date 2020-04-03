@@ -1,4 +1,4 @@
-package com.groundzero.github.common
+package com.groundzero.github.data
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.liveData
@@ -22,7 +22,9 @@ fun <T, C> resultLiveDataPersistant(
 
         if (responseStatus.status == Result.Status.SUCCESS) {
             val networkSource = Result.success(responseStatus.data)
-            saveLocal.invoke(networkSource.data!!)
+            if(responseStatus.data != null) {
+                saveLocal.invoke(networkSource.data!!)
+            }
         } else if (responseStatus.status == Result.Status.ERROR) {
             emit(Result.error(responseStatus.message!!))
         }

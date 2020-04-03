@@ -8,7 +8,7 @@ import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.groundzero.github.R
 import com.groundzero.github.base.BaseFragment
-import com.groundzero.github.common.Result
+import com.groundzero.github.data.Result
 import com.groundzero.github.databinding.FragmentSearchBinding
 import com.groundzero.github.di.helper.injectViewModel
 import com.groundzero.github.feature.search.data.Repository
@@ -32,15 +32,12 @@ class SearchFragment : BaseFragment(), SearchListener {
     private fun observeSearchQuery(query: String, viewModel: SearchViewModel) {
         viewModel.searchRepository(query, 1).observe(viewLifecycleOwner, Observer {
             when (it.status) {
-                Result.Status.LOADING -> showLoadingDialog(R.string.loading_dialog_search_repository)
                 Result.Status.SUCCESS -> {
-                    cancelLoadingScreen()
                     if (it.data != null) {
-                        adapter.submitList(it.data.repositories)
+                        adapter.submitList(it.data)
                     }
                 }
                 Result.Status.ERROR -> {
-                    cancelLoadingScreen()
                     showToastMessage(R.string.warning_message_search_repository)
                 }
             }

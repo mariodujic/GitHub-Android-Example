@@ -1,4 +1,4 @@
-package com.groundzero.github.common
+package com.groundzero.github.data
 
 data class Result<out T>(val status: Status, val data: T?, val message: String?) {
 

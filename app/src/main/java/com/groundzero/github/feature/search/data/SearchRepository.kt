@@ -1,9 +1,16 @@
 package com.groundzero.github.feature.search.data
 
-import com.groundzero.github.common.resultLiveDataRemote
+import com.groundzero.github.data.resultLiveDataPersistant
 import javax.inject.Inject
 
-class SearchRepository @Inject constructor(private val dataSource: SearchDataSource) {
+class SearchRepository @Inject constructor(
+    private val dataSource: SearchDataSource,
+    private val dao: RepositoryDao
+) {
     fun searchQuery(query: String, page: Int) =
-        resultLiveDataRemote { dataSource.searchQuery(query, page) }
+        resultLiveDataPersistant(
+            networkCall = { dataSource.searchQuery(query, page) },
+            saveLocal = { dao.insertRepositories(it.repositories) },
+            observeLocal = { dao.getRepositories() }
+        )
 }
