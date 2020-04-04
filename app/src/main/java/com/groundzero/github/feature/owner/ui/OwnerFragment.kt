@@ -1,19 +1,21 @@
 package com.groundzero.github.feature.owner.ui
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.groundzero.github.R
+import androidx.navigation.fragment.navArgs
 import com.groundzero.github.base.BaseFragment
+import com.groundzero.github.databinding.FragmentOwnerBinding
 
 class OwnerFragment : BaseFragment() {
+
+    private val args: OwnerFragmentArgs by navArgs()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_owner, container, false)
-    }
+    ): View? = FragmentOwnerBinding.inflate(inflater, container, false).apply {
+        owner = args.owner
+    }.root
 }

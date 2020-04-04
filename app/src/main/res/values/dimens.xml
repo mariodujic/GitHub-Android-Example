@@ -7,4 +7,5 @@
     <dimen name="small_text">13sp</dimen>
     <dimen name="card_radius">10dp</dimen>
     <dimen name="card_elevation">3dp</dimen>
+    <dimen name="avatar_shadow">2dp</dimen>
 </resources>
