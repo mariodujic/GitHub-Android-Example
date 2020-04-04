@@ -6,6 +6,7 @@
 
     <color name="darkPurple">#5C416A</color>
     <color name="purple">#5E509B</color>
+    <color name="purple_opaque">#505E509B</color>
     <color name="blue">#497CB3</color>
     <color name="lightBlue">#52AED1</color>
     <color name="ocean">#41D2CF</color>

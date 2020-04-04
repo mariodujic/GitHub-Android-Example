@@ -13,8 +13,8 @@ import com.groundzero.github.data.Result
 import com.groundzero.github.databinding.FragmentSearchBinding
 import com.groundzero.github.di.helper.injectViewModel
 import com.groundzero.github.feature.search.data.Repository
+import com.groundzero.github.utils.toggleSideView
 import com.groundzero.github.view.RecyclerItemDecorator
-import com.groundzero.github.view.toggleSideView
 
 class SearchFragment : BaseFragment(), SearchListener {
 

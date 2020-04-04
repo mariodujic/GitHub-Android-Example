@@ -8,8 +8,9 @@
     <string name="item_search_watchers">Watchers %s</string>
     <string name="item_search_forks">Forks %s</string>
     <string name="item_search_issues">Issues %s</string>
-    <string name="label_owner">Owner: </string>
-    <string name="label_repository_name">Repository name: </string>
+    <string name="item_search_last_update">Last update: %s</string>
+    <string name="label_owner">"Owner: "</string>
+    <string name="label_repository_name">"Repository name: "</string>
     <string name="label_sort">Sort by</string>
     // Buttons
     <string name="repository_more_on_owner">More on owner</string>
@@ -21,5 +22,4 @@
     // Toast messages
     <string name="warning_message_search_repository">Error while loading repositories</string>
     <string name="query_empty_warning">Query can\'t be empty</string>
-    <string name="label_none">None</string>
 </resources>

@@ -67,14 +67,38 @@
                 app:layout_constraintLeft_toRightOf="@id/item_search_owner_label"
                 app:layout_constraintTop_toBottomOf="@id/item_search_name_label" />
 
-            <LinearLayout
+            <TextView
+                android:id="@+id/item_search_timestamp"
+                setFormattedTime="@{repo.updatedAt}"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/normal_padding"
+                android:layout_weight="1"
+                android:textSize="@dimen/small_text"
+                app:layout_constraintLeft_toRightOf="@id/item_search_thumbnail"
+                app:layout_constraintTop_toBottomOf="@id/item_search_owner" />
+
+            <View
+                android:id="@+id/item_search_divider"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginStart="@dimen/normal_padding"
+                android:layout_marginTop="@dimen/minimal_padding"
+                android:background="@color/purple_opaque"
+                app:layout_constraintLeft_toRightOf="@id/item_search_thumbnail"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/item_search_timestamp" />
+
+            <LinearLayout
+                android:id="@+id/item_search_statistic_parent"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/normal_padding"
+                android:layout_marginTop="@dimen/minimal_padding"
                 android:orientation="horizontal"
                 app:layout_constraintLeft_toRightOf="@id/item_search_thumbnail"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/item_search_owner_label">
+                app:layout_constraintTop_toBottomOf="@id/item_search_divider">
 
                 <TextView
                     android:layout_width="0dp"

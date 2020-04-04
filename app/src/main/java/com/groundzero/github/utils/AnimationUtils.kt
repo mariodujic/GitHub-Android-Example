@@ -1,4 +1,4 @@
-package com.groundzero.github.view
+package com.groundzero.github.utils
 
 import android.animation.Animator
 import android.view.View
