@@ -4,6 +4,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import androidx.room.TypeConverters
 import com.google.gson.annotations.SerializedName
+import com.groundzero.github.feature.owner.data.Owner
 import java.io.Serializable
 
 @Entity(tableName = "repository")
@@ -20,7 +21,7 @@ data class Repository(
     @SerializedName("fork")
     val isFork: Boolean? = null,
     @TypeConverters(RepositoryConverter::class)
-    val owner: RepositoryOwner? = null,
+    val owner: Owner? = null,
     val watchers: Long? = null,
     val forks: Long? = null,
     @SerializedName("open_issues")

@@ -25,4 +25,6 @@
     <string name="warning_message_search_repository">Error while loading repositories</string>
     <string name="query_empty_warning">Query can\'t be empty</string>
     <string name="owner_inspect_in_browser">Open owner in browser</string>
+    <string name="loading_more_owner_data">Loading more owner data</string>
+    <string name="error_loading_more_owner_data">Unable to load more data for this user</string>
 </resources>

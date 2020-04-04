@@ -40,7 +40,7 @@
         android:label="fragment_owner"
         tools:layout="@layout/fragment_owner" >
         <argument
-            android:name="repositoryOwner"
-            app:argType="com.groundzero.github.feature.search.data.RepositoryOwner" />
+            android:name="owner"
+            app:argType="com.groundzero.github.feature.owner.data.Owner" />
     </fragment>
 </navigation>
