@@ -37,6 +37,7 @@ class SearchAdapter(private val listener: SearchListener) :
             binding.repo = repository
             itemView.setOnClickListener { listener.onSearchRepositoryClick(repository) }
             binding.itemSearchThumbnail.setOnClickListener { listener.onSearchOwnerClick(repository.owner!!) }
+            binding.itemSearchOwnerParent.setOnClickListener{ listener.onSearchOwnerClick(repository.owner!!)}
         }
     }
 }

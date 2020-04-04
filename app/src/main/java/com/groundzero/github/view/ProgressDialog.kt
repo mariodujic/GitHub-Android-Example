@@ -25,6 +25,4 @@ class ProgressDialog @Inject constructor() {
     fun cancelLoadingDialog() {
         dialog?.dismiss()
     }
-
-    fun isShown() = dialog?.isShowing
 }

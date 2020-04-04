@@ -12,5 +12,6 @@
     <color name="ocean">#41D2CF</color>
     <color name="black">#000000</color>
     <color name="black_opaque">#50000000</color>
+    <color name="black_hard_opaque">#10000000</color>
     <color name="white">#ffffff</color>
 </resources>

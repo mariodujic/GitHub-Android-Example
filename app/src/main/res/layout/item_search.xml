@@ -17,75 +17,85 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:padding="@dimen/normal_padding">
+            android:layout_height="match_parent">
 
             <ImageView
                 android:id="@+id/item_search_thumbnail"
                 setAvatar="@{repo.owner.avatar}"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginStart="@dimen/normal_padding"
+                android:layout_marginTop="@dimen/normal_padding"
+                app:layout_constraintBottom_toTopOf="@+id/item_search_divider"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:ignore="ContentDescription" />
 
-            <TextView
-                android:id="@+id/item_search_name_label"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:id="@+id/item_search_owner_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/normal_padding"
-                android:text="@string/label_repository_name"
+                android:layout_marginStart="@dimen/medium_padding"
+                android:layout_marginTop="@dimen/normal_padding"
+                android:layout_marginEnd="@dimen/normal_padding"
+                android:gravity="left|center"
+                android:orientation="horizontal"
                 app:layout_constraintLeft_toRightOf="@id/item_search_thumbnail"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="UseCompoundDrawables">
+
+                <ImageView
+                    android:id="@+id/item_search_owner_label"
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:src="@drawable/ic_owner"
+                    tools:ignore="ContentDescription" />
+
+                <TextView
+                    android:id="@+id/item_search_owner"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/normal_padding"
+                    android:maxLines="1"
+                    android:text="@{repo.owner.name}"
+                    android:textSize="@dimen/normal_text" />
+            </LinearLayout>
 
             <TextView
                 android:id="@+id/item_search_name"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/medium_padding"
+                android:layout_marginEnd="@dimen/normal_padding"
                 android:maxLines="1"
+                android:paddingBottom="@dimen/minimal_padding"
                 android:text="@{repo.name}"
-                app:layout_constraintLeft_toRightOf="@id/item_search_name_label"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/item_search_owner_label"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/normal_padding"
-                android:text="@string/label_owner"
+                android:textSize="@dimen/highlighted_text"
+                android:textStyle="bold"
                 app:layout_constraintLeft_toRightOf="@id/item_search_thumbnail"
-                app:layout_constraintTop_toBottomOf="@id/item_search_name_label" />
-
-            <TextView
-                android:id="@+id/item_search_owner"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:maxLines="1"
-                android:text="@{repo.owner.name}"
-                app:layout_constraintLeft_toRightOf="@id/item_search_owner_label"
-                app:layout_constraintTop_toBottomOf="@id/item_search_name_label" />
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/item_search_owner_parent" />
 
             <TextView
                 android:id="@+id/item_search_timestamp"
                 setFormattedTime="@{repo.updatedAt}"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/normal_padding"
+                android:layout_marginStart="@dimen/medium_padding"
+                android:layout_marginEnd="@dimen/normal_padding"
                 android:layout_weight="1"
                 android:textSize="@dimen/small_text"
                 app:layout_constraintLeft_toRightOf="@id/item_search_thumbnail"
-                app:layout_constraintTop_toBottomOf="@id/item_search_owner" />
+                app:layout_constraintTop_toBottomOf="@id/item_search_name" />
 
             <View
                 android:id="@+id/item_search_divider"
                 android:layout_width="0dp"
-                android:layout_height="1dp"
-                android:layout_marginStart="@dimen/normal_padding"
+                android:layout_height="0dp"
                 android:layout_marginTop="@dimen/minimal_padding"
-                android:background="@color/purple_opaque"
-                app:layout_constraintLeft_toRightOf="@id/item_search_thumbnail"
+                android:background="@color/purple"
+                app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/item_search_timestamp" />
 
@@ -93,36 +103,119 @@
                 android:id="@+id/item_search_statistic_parent"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/normal_padding"
-                android:layout_marginTop="@dimen/minimal_padding"
-                android:orientation="horizontal"
-                app:layout_constraintLeft_toRightOf="@id/item_search_thumbnail"
+                android:background="@color/black_hard_opaque"
+                android:orientation="vertical"
+                android:padding="@dimen/normal_padding"
+                app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/item_search_divider">
 
-                <TextView
-                    android:layout_width="0dp"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="left"
-                    android:text="@{@string/item_search_watchers(repo.watchers)}"
-                    android:textSize="@dimen/small_text" />
+                    android:orientation="horizontal">
 
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="@{@string/item_search_forks(repo.forks)}"
-                    android:textSize="@dimen/small_text" />
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="@string/item_search_watchers"
+                        android:textAllCaps="true"
+                        android:textSize="@dimen/small_text" />
 
-                <TextView
-                    android:layout_width="0dp"
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="@string/item_search_forks"
+                        android:textAllCaps="true"
+                        android:textSize="@dimen/small_text" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="@string/item_search_issues"
+                        android:textAllCaps="true"
+                        android:textSize="@dimen/small_text" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="right"
-                    android:text="@{@string/item_search_issues(repo.issues)}"
-                    android:textSize="@dimen/small_text" />
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="16dp"
+                            android:layout_height="16dp"
+                            android:src="@drawable/ic_watchers"
+                            tools:ignore="ContentDescription" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/normal_padding"
+                            android:gravity="center"
+                            android:text="@{`` +repo.watchers}"
+                            android:textSize="@dimen/small_text" />
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="16dp"
+                            android:layout_height="16dp"
+                            android:src="@drawable/ic_forks"
+                            tools:ignore="ContentDescription" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/normal_padding"
+                            android:gravity="center"
+                            android:text="@{`` +repo.forks}"
+                            android:textSize="@dimen/small_text" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="16dp"
+                            android:layout_height="16dp"
+                            android:src="@drawable/ic_issues"
+                            tools:ignore="ContentDescription" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/normal_padding"
+                            android:gravity="center"
+                            android:text="@{`` +repo.issues}"
+                            android:textSize="@dimen/small_text" />
+                    </LinearLayout>
+                </LinearLayout>
             </LinearLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>

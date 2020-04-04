@@ -36,6 +36,7 @@ class OwnerFragment : BaseFragment() {
                 Result.Status.ERROR -> {
                     showToastMessage(R.string.error_loading_more_owner_data)
                     cancelLoadingScreen()
+                    println("Error shown: ${it.message}")
                 }
             }
         })

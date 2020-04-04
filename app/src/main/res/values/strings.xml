@@ -5,9 +5,9 @@
     <string name="repository_title">Name</string>
     <string name="repository_user">Full Name</string>
     <string name="repository_description">Description</string>
-    <string name="item_search_watchers">Watchers %s</string>
-    <string name="item_search_forks">Forks %s</string>
-    <string name="item_search_issues">Issues %s</string>
+    <string name="item_search_watchers">Watchers</string>
+    <string name="item_search_forks">Forks</string>
+    <string name="item_search_issues">Issues</string>
     <string name="item_search_last_update">Last update: %s</string>
     <string name="label_owner">"Owner: "</string>
     <string name="label_repository_name">"Repository name: "</string>
