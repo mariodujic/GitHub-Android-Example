@@ -4,10 +4,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.groundzero.github.base.BaseFragment
 import com.groundzero.github.databinding.FragmentRepositoryBinding
+import com.groundzero.github.feature.owner.data.Owner
 
 class RepositoryFragment : BaseFragment() {
 
@@ -18,5 +19,12 @@ class RepositoryFragment : BaseFragment() {
         savedInstanceState: Bundle?
     ): View? = FragmentRepositoryBinding.inflate(inflater, container, false).apply {
         repository = args.repository
+        repositoryMoreOwner.setOnClickListener { onSearchOwnerClick(args.repository.owner!!) }
     }.root
+
+
+    private fun onSearchOwnerClick(owner: Owner) {
+        val action = RepositoryFragmentDirections.actionRepositoryFragmentToOwnerFragment(owner)
+        findNavController().navigate(action)
+    }
 }

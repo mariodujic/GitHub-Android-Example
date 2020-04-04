@@ -59,40 +59,116 @@
                 android:textStyle="bold" />
         </LinearLayout>
 
-        <LinearLayout
+        <ScrollView
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintHeight_percent="0.5">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="@dimen/medium_padding"
-                android:text="@string/owner_type"
-                android:textAllCaps="true"
-                android:textColor="@color/black" />
-
-            <TextView
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="@{owner.type}"
-                android:textAllCaps="true"
-                android:textColor="@color/black"
-                android:textSize="@dimen/highlighted_text" />
+                android:orientation="vertical">
 
-            <Button
-                android:id="@+id/owner_external_url"
-                style="@style/Widget.MaterialComponents.Button.TextButton"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/medium_padding"
-                android:layout_marginEnd="@dimen/medium_padding"
-                android:text="@string/owner_inspect_in_browser" />
+                <TextView
+                    setInfoVisibility="@{owner.type}"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/medium_padding"
+                    android:text="@string/owner_type"
+                    android:textAllCaps="true"
+                    android:textColor="@color/black" />
 
-        </LinearLayout>
+                <TextView
+                    setInfoVisibility="@{owner.type}"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@{owner.type}"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/highlighted_text" />
 
+                <TextView
+                    setInfoVisibility="@{owner.company}"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/medium_padding"
+                    android:text="@string/owner_company"
+                    android:textAllCaps="true"
+                    android:textColor="@color/black" />
+
+                <TextView
+                    setInfoVisibility="@{owner.company}"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@{owner.company}"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/highlighted_text" />
+
+                <TextView
+                    setInfoVisibility="@{owner.location}"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/medium_padding"
+                    android:text="@string/owner_location"
+                    android:textAllCaps="true"
+                    android:textColor="@color/black" />
+
+                <TextView
+                    setInfoVisibility="@{owner.location}"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@{owner.location}"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/highlighted_text" />
+
+                <TextView
+                    setInfoVisibility="@{owner.email}"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/medium_padding"
+                    android:text="@string/owner_email"
+                    android:textAllCaps="true"
+                    android:textColor="@color/black" />
+
+                <TextView
+                    setInfoVisibility="@{owner.email}"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@{owner.email}"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/highlighted_text" />
+
+                <TextView
+                    setInfoVisibility="@{owner.bio}"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/medium_padding"
+                    android:text="@string/owner_bio"
+                    android:textAllCaps="true"
+                    android:textColor="@color/black" />
+
+                <TextView
+                    setInfoVisibility="@{owner.bio}"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@{owner.bio}"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/highlighted_text" />
+
+                <Button
+                    android:id="@+id/owner_external_url"
+                    style="@style/Widget.MaterialComponents.Button.TextButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/medium_padding"
+                    android:layout_marginEnd="@dimen/medium_padding"
+                    android:text="@string/owner_inspect_in_browser" />
+            </LinearLayout>
+        </ScrollView>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

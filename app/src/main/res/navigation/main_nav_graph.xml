@@ -20,10 +20,10 @@
         <action
             android:id="@+id/action_searchFragment_to_ownerFragment"
             app:destination="@id/ownerFragment"
-            app:enterAnim="@anim/slide_in_left"
-            app:exitAnim="@anim/slide_out_left"
-            app:popEnterAnim="@anim/slide_in_right"
-            app:popExitAnim="@anim/slide_out_right" />
+            app:enterAnim="@anim/slide_in_bottom"
+            app:exitAnim="@anim/slide_out_top"
+            app:popEnterAnim="@anim/slide_in_top"
+            app:popExitAnim="@anim/slide_out_bottom" />
     </fragment>
     <fragment
         android:id="@+id/repositoryFragment"
@@ -33,6 +33,13 @@
         <argument
             android:name="repository"
             app:argType="com.groundzero.github.feature.search.data.Repository" />
+        <action
+            android:id="@+id/action_repositoryFragment_to_ownerFragment"
+            app:destination="@id/ownerFragment"
+            app:enterAnim="@anim/slide_in_bottom"
+            app:exitAnim="@anim/slide_out_top"
+            app:popEnterAnim="@anim/slide_in_top"
+            app:popExitAnim="@anim/slide_out_bottom" />
     </fragment>
     <fragment
         android:id="@+id/ownerFragment"

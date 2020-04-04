@@ -14,17 +14,21 @@
     <string name="label_sort">Sort by</string>
     <string name="owner_type">Type</string>
     <string name="owner_is_admin">Admin</string>
+    <string name="owner_company">Company</string>
+    <string name="owner_location">Location</string>
+    <string name="owner_email">Email</string>
+    <string name="owner_bio">Bio</string>
     // Buttons
     <string name="repository_more_on_owner">More on owner</string>
     <string name="repository_inspect_in_browser">Open repository in browser</string>
+    <string name="owner_inspect_in_browser">Open owner in browser</string>
     // Loading dialog messages
     <string name="loading_dialog_search_repository">Loading repositories</string>
     <string name="loading_more_repositories">Loading more repositories</string>
     <string name="loading_new_repositories">Loading new repositories</string>
+    <string name="loading_more_owner_data">Loading more owner data</string>
     // Toast messages
     <string name="warning_message_search_repository">Error while loading repositories</string>
     <string name="query_empty_warning">Query can\'t be empty</string>
-    <string name="owner_inspect_in_browser">Open owner in browser</string>
-    <string name="loading_more_owner_data">Loading more owner data</string>
     <string name="error_loading_more_owner_data">Unable to load more data for this user</string>
 </resources>
