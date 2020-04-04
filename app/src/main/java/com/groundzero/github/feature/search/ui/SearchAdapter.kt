@@ -12,7 +12,13 @@ class SearchAdapter(private val listener: SearchListener) :
     PagedListAdapter<Repository, SearchAdapter.SearchViewHolder>(DIFF_CALLBACK) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SearchViewHolder =
-        SearchViewHolder(ItemSearchBinding.inflate(LayoutInflater.from(parent.context), parent, false), listener)
+        SearchViewHolder(
+            ItemSearchBinding.inflate(
+                LayoutInflater.from(parent.context),
+                parent,
+                false
+            ), listener
+        )
 
     override fun onBindViewHolder(holder: SearchViewHolder, position: Int) {
 
@@ -29,7 +35,8 @@ class SearchAdapter(private val listener: SearchListener) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(repository: Repository) {
             binding.repo = repository
-            itemView.setOnClickListener { listener.onSearchItemClick(repository) }
+            itemView.setOnClickListener { listener.onSearchRepositoryClick(repository) }
+            binding.itemSearchThumbnail.setOnClickListener { listener.onSearchOwnerClick(repository.owner!!) }
         }
     }
 }

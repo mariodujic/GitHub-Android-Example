@@ -12,6 +12,7 @@ import com.groundzero.github.base.BaseFragment
 import com.groundzero.github.data.Result
 import com.groundzero.github.databinding.FragmentSearchBinding
 import com.groundzero.github.di.helper.injectViewModel
+import com.groundzero.github.feature.owner.data.Owner
 import com.groundzero.github.feature.search.data.Repository
 import com.groundzero.github.utils.toggleSideView
 import com.groundzero.github.view.RecyclerItemDecorator
@@ -115,8 +116,13 @@ class SearchFragment : BaseFragment(), SearchListener {
         }
     }
 
-    override fun onSearchItemClick(repository: Repository) {
+    override fun onSearchRepositoryClick(repository: Repository) {
         val action = SearchFragmentDirections.actionSearchFragmentToRepositoryFragment(repository)
+        findNavController().navigate(action)
+    }
+
+    override fun onSearchOwnerClick(owner: Owner) {
+        val action = SearchFragmentDirections.actionSearchFragmentToOwnerFragment(owner)
         findNavController().navigate(action)
     }
 }
