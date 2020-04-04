@@ -14,6 +14,7 @@ import com.groundzero.github.databinding.FragmentSearchBinding
 import com.groundzero.github.di.helper.injectViewModel
 import com.groundzero.github.feature.search.data.Repository
 import com.groundzero.github.view.RecyclerItemDecorator
+import com.groundzero.github.view.toggleSideView
 
 class SearchFragment : BaseFragment(), SearchListener {
 
@@ -36,6 +37,7 @@ class SearchFragment : BaseFragment(), SearchListener {
             observeSearchQuery(it)
             implementListeners(this, it)
             recyclerViewListener(this, it)
+            setSideToggleButton(this, it)
         }
     }.root
 
@@ -87,6 +89,29 @@ class SearchFragment : BaseFragment(), SearchListener {
                 }
             }
         })
+    }
+
+    private fun setSideToggleButton(binding: FragmentSearchBinding, viewModel: SearchViewModel) {
+        binding.apply {
+            searchSortParent.setOnLongClickListener {
+                if (viewModel.toggleButtonShown) {
+                    searchSortParent.toggleSideView(false).start()
+                    viewModel.toggleButtonShown = false
+                } else {
+                    searchSortParent.toggleSideView(true).start()
+                    viewModel.toggleButtonShown = true
+                }
+                true
+            }
+
+            searchSortParent.setOnClickListener {
+                viewModel.nextSort()
+            }
+
+            viewModel.getSortTypeLive().observe(viewLifecycleOwner, Observer { sort ->
+                searchSortType.text = sort.getType()
+            })
+        }
     }
 
     override fun onSearchItemClick(repository: Repository) {
