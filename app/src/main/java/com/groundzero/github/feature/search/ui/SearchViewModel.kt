@@ -5,49 +5,57 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
 import com.groundzero.github.feature.search.data.SearchRepository
-import com.groundzero.github.feature.search.data.SearchSort
+import com.groundzero.github.feature.search.data.SortType
 import javax.inject.Inject
 
 
 class SearchViewModel @Inject constructor(private val repository: SearchRepository) : ViewModel() {
 
-    var loadingData = false
-    var toggleButtonShown: Boolean = false
-    private val queryLiveData = MutableLiveData<String>()
-    private var page = 1
+    var isLoadingOnScroll = false
+    var isToggleButtonShown: Boolean = false
+    private var currentPage = 1
+    private val queryLive = MutableLiveData<String>()
     private var sortArray = mutableListOf(
-        SearchSort.STARS,
-        SearchSort.FORKS,
-        SearchSort.UPDATES
+        SortType.STARS,
+        SortType.FORKS,
+        SortType.UPDATES
     )
-    private val sortTypeLive = MutableLiveData<SearchSort>().apply {
+
+    private val sortTypeLive = MutableLiveData<SortType>().apply {
         this.value = sortArray[0]
     }
 
-    val repoResult = Transformations.switchMap(queryLiveData) { query ->
-        repository.searchQuery(query ?: "Android", page, 20, sortTypeLive.value!!)
+    val repositoryLive = Transformations.switchMap(queryLive) { query ->
+        repository.searchQuery(query, currentPage, 20, sortTypeLive.value!!)
     }
 
-    fun searchRepo(queryString: String?) {
+    fun setInitialQuery() {
+        if (queryLive.value == null) {
+            searchRepositories("Android")
+        }
+    }
+
+    fun searchRepositories(queryString: String?) {
         if (queryString != null) {
             repository.deleteData()
-            queryLiveData.postValue(queryString)
+            queryLive.postValue(queryString)
         }
     }
 
     fun nextPage() {
-        page++
-        queryLiveData.postValue(lastQueryValue())
+        currentPage++
+        queryLive.postValue(lastQueryValue())
     }
 
     fun nextSort() {
         repository.deleteData()
         val currentIndex = sortArray.indexOf(sortTypeLive.value!!)
-        val nextSortType = sortArray[if(sortArray.size != currentIndex+1) currentIndex + 1 else 0]
+        val nextSortType =
+            sortArray[if (sortArray.size != currentIndex + 1) currentIndex + 1 else 0]
         sortTypeLive.value = nextSortType
-        queryLiveData.postValue(lastQueryValue())
+        queryLive.postValue(lastQueryValue())
     }
 
-    private fun lastQueryValue(): String? = queryLiveData.value
-    fun getSortTypeLive(): LiveData<SearchSort> = sortTypeLive
+    private fun lastQueryValue(): String? = queryLive.value
+    fun getSortTypeLive(): LiveData<SortType> = sortTypeLive
 }

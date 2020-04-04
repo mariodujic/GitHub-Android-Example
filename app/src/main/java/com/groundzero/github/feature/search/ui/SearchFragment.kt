@@ -38,11 +38,12 @@ class SearchFragment : BaseFragment(), SearchListener {
             implementListeners(this, it)
             recyclerViewListener(this, it)
             setSideToggleButton(this, it)
+            viewModel.setInitialQuery()
         }
     }.root
 
     private fun observeSearchQuery(viewModel: SearchViewModel) {
-        viewModel.repoResult.observe(viewLifecycleOwner, Observer {
+        viewModel.repositoryLive.observe(viewLifecycleOwner, Observer {
             when (it.status) {
                 Result.Status.LOADING -> {
                     showLoadingDialog(R.string.loading_dialog_search_repository)
@@ -52,12 +53,12 @@ class SearchFragment : BaseFragment(), SearchListener {
                     if (it.data != null) {
                         searchAdapter.submitList(it.data)
                     }
-                    viewModel.loadingData = false
+                    viewModel.isLoadingOnScroll = false
                 }
                 Result.Status.ERROR -> {
                     cancelLoadingScreen()
                     showToastMessage(R.string.warning_message_search_repository)
-                    viewModel.loadingData = false
+                    viewModel.isLoadingOnScroll = false
                 }
             }
         })
@@ -67,7 +68,7 @@ class SearchFragment : BaseFragment(), SearchListener {
         binding.searchRepositoryButton.setOnClickListener {
             binding.searchQuery.text.toString().also {
                 if (it != "") {
-                    viewModel.searchRepo(it)
+                    viewModel.searchRepositories(it)
                 } else {
                     showToastMessage(R.string.query_empty_warning)
                 }
@@ -82,9 +83,9 @@ class SearchFragment : BaseFragment(), SearchListener {
                 super.onScrollStateChanged(recyclerView, newState)
 
                 if (!recyclerView.canScrollVertically(1)) {
-                    if (!viewModel.loadingData) {
+                    if (!viewModel.isLoadingOnScroll) {
                         viewModel.nextPage()
-                        viewModel.loadingData = true
+                        viewModel.isLoadingOnScroll = true
                     }
                 }
             }
@@ -94,12 +95,12 @@ class SearchFragment : BaseFragment(), SearchListener {
     private fun setSideToggleButton(binding: FragmentSearchBinding, viewModel: SearchViewModel) {
         binding.apply {
             searchSortParent.setOnLongClickListener {
-                if (viewModel.toggleButtonShown) {
+                if (viewModel.isToggleButtonShown) {
                     searchSortParent.toggleSideView(false).start()
-                    viewModel.toggleButtonShown = false
+                    viewModel.isToggleButtonShown = false
                 } else {
                     searchSortParent.toggleSideView(true).start()
-                    viewModel.toggleButtonShown = true
+                    viewModel.isToggleButtonShown = true
                 }
                 true
             }
