@@ -13,5 +13,11 @@ data class Owner(
     val htmlUrl: String,
     val type: String,
     @SerializedName("site_admin")
-    val isSiteAdmin: Boolean
+    val isSiteAdmin: Boolean,
+    val company: String,
+    val location: String,
+    val email: String,
+    val bio: String,
+    @SerializedName("created_at")
+    val createdAt: String
 ) : Serializable
