@@ -10,7 +10,7 @@ import kotlinx.coroutines.launch
 fun <T, C> resultLiveDataPersistent(
     networkCall: suspend () -> Result<C>,
     saveLocal: suspend (C) -> Unit,
-    observeLocal: (suspend () -> LiveData<T>)? = null
+    observeLocal: (suspend () -> LiveData<T>)
 ): LiveData<Result<T>> =
 
     liveData(Dispatchers.IO) {
@@ -31,28 +31,5 @@ fun <T, C> resultLiveDataPersistent(
             emit(Result.error(responseStatus.message!!))
         }
 
-        source?.let {
-            emitSource(it)
-        }
+        emitSource(source)
     }
-
-fun <T> updateLiveDataPersistent(
-    networkCall: suspend () -> Result<T>,
-    saveLocal: suspend (T) -> Unit
-) = CoroutineScope(Dispatchers.IO).launch {
-    val responseStatus = networkCall.invoke()
-    if (responseStatus.status == Result.Status.SUCCESS) {
-        val networkSource = Result.success(responseStatus.data)
-        if (responseStatus.data != null) {
-            saveLocal.invoke(networkSource.data!!)
-        }
-    }
-}
-
-
-fun deleteLiveData(
-    deletePersistentData: suspend () -> Unit
-) = CoroutineScope(Dispatchers.IO).launch {
-    deletePersistentData.invoke()
-}
-

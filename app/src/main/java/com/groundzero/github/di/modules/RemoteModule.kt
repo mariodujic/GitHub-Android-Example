@@ -2,6 +2,7 @@ package com.groundzero.github.di.modules
 
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
+import com.groundzero.github.feature.owner.api.OwnerApi
 import com.groundzero.github.feature.search.api.SearchApi
 import dagger.Module
 import dagger.Provides
@@ -13,6 +14,13 @@ import javax.inject.Singleton
 
 @Module
 class RemoteModule {
+
+    @Provides
+    @Singleton
+    fun provideOwnerApi(
+        client: OkHttpClient,
+        converterFactory: GsonConverterFactory
+    ): OwnerApi = createApi(client, converterFactory, OwnerApi::class.java)
 
     @Provides
     @Singleton

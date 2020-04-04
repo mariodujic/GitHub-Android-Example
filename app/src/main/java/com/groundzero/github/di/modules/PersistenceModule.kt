@@ -11,6 +11,11 @@ class PersistenceModule {
 
     @Provides
     @Singleton
+    fun provideOwnerDao(persistenceDatabase: PersistenceDatabase) =
+        persistenceDatabase.getOwnerDao()
+
+    @Provides
+    @Singleton
     fun provideRepositoryDao(persistenceDatabase: PersistenceDatabase) =
         persistenceDatabase.getRepositoryDao()
 
