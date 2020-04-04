@@ -9,4 +9,6 @@
     <dimen name="card_radius">10dp</dimen>
     <dimen name="card_elevation">3dp</dimen>
     <dimen name="avatar_shadow">2dp</dimen>
+    <dimen name="no_radius">0dp</dimen>
+    <dimen name="search_repository_parent_card_elevation">15dp</dimen>
 </resources>
