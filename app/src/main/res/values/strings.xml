@@ -31,4 +31,5 @@
     <string name="warning_message_search_repository">Error while loading repositories</string>
     <string name="query_empty_warning">Query can\'t be empty</string>
     <string name="error_loading_more_owner_data">Unable to load more data for this user</string>
+    <string name="repository_language">Language</string>
 </resources>

@@ -1,4 +1,5 @@
-<layout>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -7,79 +8,216 @@
             type="com.groundzero.github.feature.search.data.Repository" />
     </data>
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        tools:context=".feature.repository.RepositoryFragment">
+        android:layout_height="match_parent">
 
-        <TextView
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="@dimen/medium_padding"
-            android:text="@string/repository_title"
-            android:textAllCaps="true" />
+            android:orientation="vertical"
+            tools:context=".feature.repository.RepositoryFragment">
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/medium_padding"
-            android:layout_marginEnd="@dimen/medium_padding"
-            android:text="@{repository.name}"
-            android:textColor="@color/black"
-            android:textSize="@dimen/highlighted_text" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/medium_padding"
+                android:text="@string/repository_title"
+                android:textAllCaps="true" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="@dimen/medium_padding"
-            android:text="@string/repository_user"
-            android:textAllCaps="true" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/medium_padding"
+                android:layout_marginEnd="@dimen/medium_padding"
+                android:text="@{repository.name}"
+                android:textColor="@color/black"
+                android:textSize="@dimen/highlighted_text" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/medium_padding"
-            android:layout_marginEnd="@dimen/medium_padding"
-            android:text="@{repository.fullName}"
-            android:textColor="@color/black"
-            android:textSize="@dimen/highlighted_text" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/medium_padding"
+                android:text="@string/repository_user"
+                android:textAllCaps="true" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="@dimen/medium_padding"
-            android:text="@string/repository_description"
-            android:textAllCaps="true" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/medium_padding"
+                android:layout_marginEnd="@dimen/medium_padding"
+                android:text="@{repository.fullName}"
+                android:textColor="@color/black"
+                android:textSize="@dimen/highlighted_text" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/medium_padding"
-            android:layout_marginEnd="@dimen/medium_padding"
-            android:text="@{repository.description}"
-            android:textColor="@color/black"
-            android:textSize="@dimen/highlighted_text" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/medium_padding"
+                android:text="@string/repository_description"
+                android:textAllCaps="true" />
 
-        <Button
-            android:id="@+id/repository_more_owner"
-            style="?attr/materialButtonOutlinedStyle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/medium_padding"
-            android:layout_marginTop="@dimen/normal_padding"
-            android:layout_marginEnd="@dimen/medium_padding"
-            android:layout_marginBottom="@dimen/minimal_padding"
-            android:text="@string/repository_more_on_owner" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/medium_padding"
+                android:layout_marginEnd="@dimen/medium_padding"
+                android:text="@{repository.description}"
+                android:textColor="@color/black"
+                android:textSize="@dimen/highlighted_text" />
 
-        <Button
-            android:id="@+id/repository_external_url"
-            style="@style/Widget.MaterialComponents.Button.TextButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/medium_padding"
-            android:layout_marginEnd="@dimen/medium_padding"
-            android:text="@string/repository_inspect_in_browser" />
-    </LinearLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/medium_padding"
+                android:text="@string/repository_language"
+                android:textAllCaps="true" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/medium_padding"
+                android:layout_marginEnd="@dimen/medium_padding"
+                android:text="@{repository.language}"
+                android:textColor="@color/black"
+                android:textSize="@dimen/highlighted_text" />
+
+
+            <LinearLayout
+                android:id="@+id/item_search_statistic_parent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/normal_padding"
+                android:orientation="vertical"
+                android:padding="@dimen/normal_padding">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="@string/item_search_watchers"
+                        android:textAllCaps="true"
+                        android:textSize="@dimen/small_text" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="@string/item_search_forks"
+                        android:textAllCaps="true"
+                        android:textSize="@dimen/small_text" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="@string/item_search_issues"
+                        android:textAllCaps="true"
+                        android:textSize="@dimen/small_text" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="16dp"
+                            android:layout_height="16dp"
+                            android:src="@drawable/ic_watchers"
+                            tools:ignore="ContentDescription" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/normal_padding"
+                            android:gravity="center"
+                            android:text="@{`` +repository.watchers}"
+                            android:textSize="@dimen/small_text" />
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="16dp"
+                            android:layout_height="16dp"
+                            android:src="@drawable/ic_forks"
+                            tools:ignore="ContentDescription" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/normal_padding"
+                            android:gravity="center"
+                            android:text="@{`` +repository.forks}"
+                            android:textSize="@dimen/small_text" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="16dp"
+                            android:layout_height="16dp"
+                            android:src="@drawable/ic_issues"
+                            tools:ignore="ContentDescription" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/normal_padding"
+                            android:gravity="center"
+                            android:text="@{`` +repository.issues}"
+                            android:textSize="@dimen/small_text" />
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/repository_more_owner"
+                style="?attr/materialButtonOutlinedStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/medium_padding"
+                android:layout_marginTop="@dimen/normal_padding"
+                android:layout_marginEnd="@dimen/medium_padding"
+                android:layout_marginBottom="@dimen/minimal_padding"
+                android:text="@string/repository_more_on_owner" />
+
+            <Button
+                android:id="@+id/repository_external_url"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/medium_padding"
+                android:layout_marginEnd="@dimen/medium_padding"
+                android:text="@string/repository_inspect_in_browser" />
+        </LinearLayout>
+    </ScrollView>
 </layout>

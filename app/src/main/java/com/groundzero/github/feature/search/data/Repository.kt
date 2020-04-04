@@ -29,5 +29,6 @@ data class Repository(
     @SerializedName("created_at")
     val createdAt: String? = null,
     @SerializedName("updated_at")
-    val updatedAt: String? = null
+    val updatedAt: String? = null,
+    val language: String? = null
 ) : Serializable
