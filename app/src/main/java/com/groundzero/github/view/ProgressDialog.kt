@@ -18,10 +18,13 @@ class ProgressDialog @Inject constructor() {
         val viewMessage = view.findViewById<TextView>(R.id.progress_dialog_message)
         viewMessage.text = message
         dialog!!.setContentView(view)
+        dialog!!.setCancelable(false)
         dialog!!.show()
     }
 
     fun cancelLoadingDialog() {
         dialog?.dismiss()
     }
+
+    fun isShown() = dialog?.isShowing
 }

@@ -34,7 +34,7 @@
                 app:layout_constraintBottom_toBottomOf="parent">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/search_repository"
+                    android:id="@+id/search_query"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -49,6 +49,38 @@
                 android:src="@drawable/ic_search"
                 android:text="@string/hint_search"
                 tools:ignore="ContentDescription" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/search_sort_parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="50dp"
+            android:background="@drawable/filter_background"
+            android:orientation="vertical"
+            android:paddingLeft="@dimen/medium_padding"
+            android:paddingTop="@dimen/normal_padding"
+            android:paddingRight="@dimen/medium_padding"
+            android:paddingBottom="@dimen/normal_padding"
+            app:layout_constraintBottom_toTopOf="@id/search_repository_parent"
+            app:layout_constraintRight_toRightOf="parent">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/label_sort"
+                android:textColor="@color/white"
+                android:textSize="@dimen/highlighted_text" />
+
+            <TextView
+                android:id="@+id/search_sort_type"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:textAllCaps="true"
+                android:textSize="@dimen/small_text" />
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

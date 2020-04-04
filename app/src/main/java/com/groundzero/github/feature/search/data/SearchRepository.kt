@@ -1,8 +1,24 @@
 package com.groundzero.github.feature.search.data
 
-import com.groundzero.github.common.resultLiveDataRemote
+import androidx.paging.LivePagedListBuilder
+import com.groundzero.github.data.resultLiveDataPersistent
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers.IO
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-class SearchRepository @Inject constructor(private val dataSource: SearchDataSource) {
-    fun searchQuery(query: String) = resultLiveDataRemote { dataSource.searchQuery(query) }
+class SearchRepository @Inject constructor(
+    private val dataSource: SearchDataSource,
+    private val repositoryDao: RepositoryDao
+) {
+    fun searchQuery(query: String, page: Int, perPage: Int, sortType: SortType) =
+        resultLiveDataPersistent(
+            networkCall = { dataSource.searchQuery(query, page, perPage, sortType) },
+            saveLocal = { repositoryDao.insertRepositories(it.repositories) },
+            observeLocal = { LivePagedListBuilder(repositoryDao.getRepositories(), perPage).build() }
+        )
+
+    fun deleteData() = CoroutineScope(IO).launch {
+        repositoryDao.deleteRepositories()
+    }
 }

@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimary">@color/purple</color>
-    <color name="colorPrimaryDark">@color/lightBlue</color>
+    <color name="colorPrimaryDark">@color/purple</color>
     <color name="colorAccent">@color/ocean</color>
 
     <color name="darkPurple">#5C416A</color>
     <color name="purple">#5E509B</color>
+    <color name="purple_opaque">#505E509B</color>
     <color name="blue">#497CB3</color>
     <color name="lightBlue">#52AED1</color>
     <color name="ocean">#41D2CF</color>
     <color name="black">#000000</color>
+    <color name="white">#ffffff</color>
 </resources>

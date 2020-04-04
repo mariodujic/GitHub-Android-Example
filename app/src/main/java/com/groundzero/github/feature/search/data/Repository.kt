@@ -1,20 +1,34 @@
 package com.groundzero.github.feature.search.data
 
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+import androidx.room.TypeConverters
 import com.google.gson.annotations.SerializedName
 import com.groundzero.github.feature.owner.data.Owner
+import com.groundzero.github.feature.search.data.RepositoryConverter
 import java.io.Serializable
 
+@Entity(tableName = "repository")
 data class Repository(
+    @PrimaryKey(autoGenerate = true)
+    val databaseId: Long,
     val id: Long,
-    val name: String,
+    val name: String? = null,
     @SerializedName("full_name")
-    val fullName: String,
+    val fullName: String? = null,
     @SerializedName("html_url")
-    val htmlUrl: String,
-    val description: String,
+    val htmlUrl: String? = null,
+    val description: String? = null,
     @SerializedName("fork")
-    val isFork: Boolean,
+    val isFork: Boolean? = null,
+    @TypeConverters(RepositoryConverter::class)
+    val owner: Owner? = null,
+    val watchers: Long? = null,
+    val forks: Long? = null,
+    @SerializedName("open_issues")
+    val issues: Long? = null,
     @SerializedName("created_at")
-    val createdAt: String,
-    val owner: Owner
+    val createdAt: String? = null,
+    @SerializedName("updated_at")
+    val updatedAt: String? = null
 ) : Serializable
