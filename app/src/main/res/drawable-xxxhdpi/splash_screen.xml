@@ -12,10 +12,8 @@
       android:bottom="@dimen/medium_padding">
 
     <bitmap
-        android:src="@mipmap/ic_launcher"
+        android:src="@mipmap/splash_icon"
         android:gravity="center" />
-        />
-
   </item>
 
 </layer-list>
