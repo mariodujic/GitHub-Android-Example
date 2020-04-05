@@ -7,12 +7,18 @@ import com.groundzero.github.di.scopes.ViewModelKey
 import com.groundzero.github.feature.authentication.ui.AuthenticationViewModel
 import com.groundzero.github.feature.content.owner.ui.OwnerViewModel
 import com.groundzero.github.feature.content.search.ui.SearchViewModel
+import com.groundzero.github.feature.splash.SplashViewModel
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap
 
 @Module
 abstract class ViewModelModule {
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(SplashViewModel::class)
+    abstract fun bindSplashViewModel(viewModel: SplashViewModel): ViewModel
 
     @Binds
     @IntoMap

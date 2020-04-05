@@ -12,7 +12,9 @@
         android:roundIcon="@mipmap/ic_launcher"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".feature.authentication.common.AuthenticationActivity">
+        <activity
+            android:name=".feature.splash.SplashActivity"
+            android:theme="@style/LandingTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -29,6 +31,7 @@
                     android:scheme="@string/manifest_scheme" />
             </intent-filter>
         </activity>
+        <activity android:name=".feature.authentication.common.AuthenticationActivity" />
         <activity android:name=".feature.content.common.MainActivity" />
     </application>
 
