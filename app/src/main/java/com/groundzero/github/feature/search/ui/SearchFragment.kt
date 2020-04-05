@@ -66,13 +66,14 @@ class SearchFragment : BaseFragment(), SearchListener {
     }
 
     private fun implementListeners(binding: FragmentSearchBinding, viewModel: SearchViewModel) {
-        binding.searchRepositoryButton.setOnClickListener {
+        binding.searchQueryParent.setStartIconOnClickListener {
             binding.searchQuery.text.toString().also {
                 if (it != "") {
                     viewModel.searchRepositories(it)
                 } else {
                     showToastMessage(R.string.query_empty_warning)
                 }
+                clearSearchInputFocus(binding)
             }
         }
     }
@@ -82,7 +83,6 @@ class SearchFragment : BaseFragment(), SearchListener {
             RecyclerView.OnScrollListener() {
             override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
                 super.onScrollStateChanged(recyclerView, newState)
-
                 if (!recyclerView.canScrollVertically(1)) {
                     if (!viewModel.isLoadingOnScroll) {
                         viewModel.nextPage()
@@ -91,6 +91,12 @@ class SearchFragment : BaseFragment(), SearchListener {
                 }
             }
         })
+    }
+
+    private fun clearSearchInputFocus(binding: FragmentSearchBinding) {
+        if (binding.searchQueryParent.hasFocus()) {
+            binding.searchQueryParent.clearFocus()
+        }
     }
 
     private fun setSideToggleButton(binding: FragmentSearchBinding, viewModel: SearchViewModel) {

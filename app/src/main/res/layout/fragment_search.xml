@@ -31,30 +31,22 @@
                 android:orientation="horizontal">
 
                 <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/search_query_parent"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/normal_padding"
                     android:layout_weight="1"
                     android:hint="@string/hint_search"
-                    app:layout_constraintBottom_toBottomOf="parent">
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:endIconMode="clear_text"
+                    app:startIconDrawable="@drawable/ic_search">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/search_query"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
                 </com.google.android.material.textfield.TextInputLayout>
-
-                <ImageButton
-                    android:id="@+id/search_repository_button"
-                    style="@style/Widget.MaterialComponents.Button"
-                    android:layout_width="30dp"
-                    android:layout_height="match_parent"
-                    android:layout_marginEnd="@dimen/normal_padding"
-                    android:background="@android:color/transparent"
-                    android:src="@drawable/ic_search"
-                    android:text="@string/hint_search"
-                    tools:ignore="ContentDescription" />
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
