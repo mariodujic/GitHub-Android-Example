@@ -1,6 +1,6 @@
 package com.groundzero.github.di.codemodules
 
-import com.groundzero.github.feature.authentication.AuthenticateFragment
+import com.groundzero.github.feature.authentication.ui.AuthenticationFragment
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
@@ -8,5 +8,5 @@ import dagger.android.ContributesAndroidInjector
 abstract class AuthenticationFragmentModule {
 
     @ContributesAndroidInjector
-    abstract fun contributeAuthenticate(): AuthenticateFragment
+    abstract fun contributeAuthenticate(): AuthenticationFragment
 }

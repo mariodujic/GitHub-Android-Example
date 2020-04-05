@@ -12,11 +12,21 @@
         android:roundIcon="@mipmap/ic_launcher"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".feature.authentication.AuthenticationActivity">
+        <activity android:name=".feature.authentication.common.AuthenticationActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:host="@string/manifest_host"
+                    android:scheme="@string/manifest_scheme" />
             </intent-filter>
         </activity>
         <activity android:name=".feature.content.common.MainActivity" />

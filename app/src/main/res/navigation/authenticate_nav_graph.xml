@@ -3,10 +3,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/authenticateFragment">
+    app:startDestination="@id/authenticationFragment">
     <fragment
-        android:id="@+id/authenticateFragment"
-        android:name="com.groundzero.github.feature.authentication.AuthenticateFragment"
-        android:label="fragment_authenticate"
-        tools:layout="@layout/fragment_authenticate" />
+        android:id="@+id/authenticationFragment"
+        android:name="com.groundzero.github.feature.authentication.ui.AuthenticationFragment"
+        android:label="fragment_authentication"
+        tools:layout="@layout/fragment_authentication" />
 </navigation>

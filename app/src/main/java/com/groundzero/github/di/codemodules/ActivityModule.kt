@@ -1,6 +1,6 @@
 package com.groundzero.github.di.codemodules
 
-import com.groundzero.github.feature.authentication.AuthenticationActivity
+import com.groundzero.github.feature.authentication.common.AuthenticationActivity
 import com.groundzero.github.feature.content.common.MainActivity
 import dagger.Module
 import dagger.android.ContributesAndroidInjector

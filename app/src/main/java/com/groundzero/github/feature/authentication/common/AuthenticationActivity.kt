@@ -1,4 +1,4 @@
-package com.groundzero.github.feature.authentication
+package com.groundzero.github.feature.authentication.common
 
 import android.os.Bundle
 import com.groundzero.github.R
