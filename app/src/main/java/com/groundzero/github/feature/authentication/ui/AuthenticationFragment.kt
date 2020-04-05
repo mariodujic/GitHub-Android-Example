@@ -13,6 +13,7 @@ import com.groundzero.github.base.BaseFragment
 import com.groundzero.github.data.Result
 import com.groundzero.github.databinding.FragmentAuthenticationBinding
 import com.groundzero.github.di.helper.injectViewModel
+import com.groundzero.github.feature.content.common.MainActivity
 
 class AuthenticationFragment : BaseFragment() {
 
@@ -54,6 +55,7 @@ class AuthenticationFragment : BaseFragment() {
                         Result.Status.LOADING -> showLoadingDialog(R.string.getting_access_token)
                         Result.Status.SUCCESS -> {
                             cancelLoadingScreen()
+                            nextActivity(MainActivity::class.java)
                         }
                         Result.Status.ERROR -> {
                             cancelLoadingScreen()

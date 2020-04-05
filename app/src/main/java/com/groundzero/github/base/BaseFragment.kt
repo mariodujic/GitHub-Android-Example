@@ -38,4 +38,9 @@ open class BaseFragment : Fragment(), Injectable {
     fun openUrlInBrowser(url: String) {
         startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(url)))
     }
+
+    fun nextActivity(clazz: Class<*>) {
+        startActivity(Intent(requireActivity(), clazz))
+        requireActivity().finish()
+    }
 }
