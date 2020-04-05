@@ -5,11 +5,11 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
-import com.groundzero.github.feature.owner.data.Owner
-import com.groundzero.github.feature.owner.data.OwnerDao
-import com.groundzero.github.feature.search.data.Repository
-import com.groundzero.github.feature.search.data.RepositoryConverter
-import com.groundzero.github.feature.search.data.RepositoryDao
+import com.groundzero.github.feature.content.owner.data.Owner
+import com.groundzero.github.feature.content.owner.data.OwnerDao
+import com.groundzero.github.feature.content.search.data.Repository
+import com.groundzero.github.feature.content.search.data.RepositoryConverter
+import com.groundzero.github.feature.content.search.data.RepositoryDao
 
 @TypeConverters(RepositoryConverter::class)
 @Database(entities = [Repository::class, Owner::class], exportSchema = false, version = 1)

@@ -32,4 +32,8 @@
     <string name="query_empty_warning">Query can\'t be empty</string>
     <string name="error_loading_more_owner_data">Unable to load more data for this user</string>
     <string name="repository_language">Language</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="authenticate_user">Continue with GitHub</string>
 </resources>

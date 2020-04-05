@@ -1,10 +1,10 @@
 package com.groundzero.github
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import com.groundzero.github.feature.search.data.SearchRepository
-import com.groundzero.github.feature.search.data.SortType
-import com.groundzero.github.feature.search.ui.SearchViewModel
-import com.groundzero.github.feature.search.ui.SearchViewModel.Companion.ITEMS_PER_PAGE
+import com.groundzero.github.feature.content.search.data.SearchRepository
+import com.groundzero.github.feature.content.search.data.SortType
+import com.groundzero.github.feature.content.search.ui.SearchViewModel
+import com.groundzero.github.feature.content.search.ui.SearchViewModel.Companion.ITEMS_PER_PAGE
 import org.junit.Assert.assertEquals
 import org.junit.Before
 import org.junit.Rule

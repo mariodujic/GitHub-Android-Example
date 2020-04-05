@@ -1,8 +1,8 @@
 package com.groundzero.github
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import com.groundzero.github.feature.owner.data.OwnerRepository
-import com.groundzero.github.feature.owner.ui.OwnerViewModel
+import com.groundzero.github.feature.content.owner.data.OwnerRepository
+import com.groundzero.github.feature.content.owner.ui.OwnerViewModel
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test

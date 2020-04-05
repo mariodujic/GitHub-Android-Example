@@ -2,8 +2,8 @@ package com.groundzero.github.di.modules
 
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
-import com.groundzero.github.feature.owner.api.OwnerApi
-import com.groundzero.github.feature.search.api.SearchApi
+import com.groundzero.github.feature.content.owner.api.OwnerApi
+import com.groundzero.github.feature.content.search.api.SearchApi
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient

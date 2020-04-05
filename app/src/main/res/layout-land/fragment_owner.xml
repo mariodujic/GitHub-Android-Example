@@ -5,13 +5,13 @@
 
         <variable
             name="owner"
-            type="com.groundzero.github.feature.owner.data.Owner" />
+            type="com.groundzero.github.feature.content.owner.data.Owner" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".feature.owner.ui.OwnerFragment">
+        tools:context=".feature.content.owner.ui.OwnerFragment">
 
         <LinearLayout
             android:layout_width="0dp"

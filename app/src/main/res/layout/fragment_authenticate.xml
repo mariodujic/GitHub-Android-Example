@@ -1,0 +1,24 @@
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorPrimary">
+
+        <Button
+            android:id="@+id/authenticate_with_github"
+            style="@style/Widget.MaterialComponents.Button.Icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/authenticate_user"
+            app:icon="@drawable/ic_github"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:elevation="@dimen/card_elevation"
+            android:backgroundTint="@color/white"
+            app:iconTint="@color/colorPrimary"
+            android:textColor="@color/colorPrimary"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

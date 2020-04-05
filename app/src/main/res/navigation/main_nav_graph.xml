@@ -7,9 +7,9 @@
 
     <fragment
         android:id="@+id/searchFragment"
-        android:name="com.groundzero.github.feature.search.ui.SearchFragment"
+        android:name="com.groundzero.github.feature.content.search.ui.SearchFragment"
         android:label="fragment_search"
-        tools:layout="@layout/fragment_search" >
+        tools:layout="@layout/fragment_search">
         <action
             android:id="@+id/action_searchFragment_to_repositoryFragment"
             app:destination="@id/repositoryFragment"
@@ -27,12 +27,12 @@
     </fragment>
     <fragment
         android:id="@+id/repositoryFragment"
-        android:name="com.groundzero.github.feature.repository.RepositoryFragment"
+        android:name="com.groundzero.github.feature.content.repository.RepositoryFragment"
         android:label="fragment_repository"
-        tools:layout="@layout/fragment_repository" >
+        tools:layout="@layout/fragment_repository">
         <argument
             android:name="repository"
-            app:argType="com.groundzero.github.feature.search.data.Repository" />
+            app:argType="com.groundzero.github.feature.content.search.data.Repository" />
         <action
             android:id="@+id/action_repositoryFragment_to_ownerFragment"
             app:destination="@id/ownerFragment"
@@ -43,11 +43,11 @@
     </fragment>
     <fragment
         android:id="@+id/ownerFragment"
-        android:name="com.groundzero.github.feature.owner.ui.OwnerFragment"
+        android:name="com.groundzero.github.feature.content.owner.ui.OwnerFragment"
         android:label="fragment_owner"
-        tools:layout="@layout/fragment_owner" >
+        tools:layout="@layout/fragment_owner">
         <argument
             android:name="owner"
-            app:argType="com.groundzero.github.feature.owner.data.Owner" />
+            app:argType="com.groundzero.github.feature.content.owner.data.Owner" />
     </fragment>
 </navigation>

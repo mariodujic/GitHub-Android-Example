@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/authenticateFragment">
+    <fragment
+        android:id="@+id/authenticateFragment"
+        android:name="com.groundzero.github.feature.authentication.AuthenticateFragment"
+        android:label="fragment_authenticate"
+        tools:layout="@layout/fragment_authenticate" />
+</navigation>

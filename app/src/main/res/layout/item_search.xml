@@ -6,7 +6,7 @@
 
         <variable
             name="repo"
-            type="com.groundzero.github.feature.search.data.Repository" />
+            type="com.groundzero.github.feature.content.search.data.Repository" />
     </data>
 
     <androidx.cardview.widget.CardView

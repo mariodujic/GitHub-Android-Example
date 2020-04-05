@@ -4,8 +4,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.groundzero.github.di.helper.ViewModelFactory
 import com.groundzero.github.di.scopes.ViewModelKey
-import com.groundzero.github.feature.owner.ui.OwnerViewModel
-import com.groundzero.github.feature.search.ui.SearchViewModel
+import com.groundzero.github.feature.content.owner.ui.OwnerViewModel
+import com.groundzero.github.feature.content.search.ui.SearchViewModel
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap

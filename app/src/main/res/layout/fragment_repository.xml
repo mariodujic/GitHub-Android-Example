@@ -5,7 +5,7 @@
 
         <variable
             name="repository"
-            type="com.groundzero.github.feature.search.data.Repository" />
+            type="com.groundzero.github.feature.content.search.data.Repository" />
     </data>
 
     <ScrollView
@@ -16,7 +16,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            tools:context=".feature.repository.RepositoryFragment">
+            tools:context=".feature.content.repository.RepositoryFragment">
 
             <TextView
                 android:layout_width="match_parent"

@@ -1,8 +1,8 @@
 package com.groundzero.github.di.codemodules
 
-import com.groundzero.github.feature.owner.ui.OwnerFragment
-import com.groundzero.github.feature.repository.RepositoryFragment
-import com.groundzero.github.feature.search.ui.SearchFragment
+import com.groundzero.github.feature.content.owner.ui.OwnerFragment
+import com.groundzero.github.feature.content.repository.RepositoryFragment
+import com.groundzero.github.feature.content.search.ui.SearchFragment
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
