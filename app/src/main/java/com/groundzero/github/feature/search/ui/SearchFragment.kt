@@ -102,13 +102,8 @@ class SearchFragment : BaseFragment(), SearchListener {
     private fun setSideToggleButton(binding: FragmentSearchBinding, viewModel: SearchViewModel) {
         binding.apply {
             searchSortParent.setOnLongClickListener {
-                if (viewModel.isToggleButtonShown) {
-                    searchSortParent.toggleSideView(false).start()
-                    viewModel.isToggleButtonShown = false
-                } else {
-                    searchSortParent.toggleSideView(true).start()
-                    viewModel.isToggleButtonShown = true
-                }
+                searchSortParent.toggleSideView(!viewModel.isToggleButtonShown).start()
+                viewModel.isToggleButtonShown = !viewModel.isToggleButtonShown
                 true
             }
 
