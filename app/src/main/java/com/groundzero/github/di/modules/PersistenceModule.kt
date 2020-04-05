@@ -11,6 +11,11 @@ class PersistenceModule {
 
     @Provides
     @Singleton
+    fun provideAccessDao(persistenceDatabase: PersistenceDatabase) =
+        persistenceDatabase.getAccessTokeNDao()
+
+    @Provides
+    @Singleton
     fun provideOwnerDao(persistenceDatabase: PersistenceDatabase) =
         persistenceDatabase.getOwnerDao()
 

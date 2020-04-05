@@ -28,11 +28,13 @@
     <string name="loading_more_repositories">Loading more repositories</string>
     <string name="loading_new_repositories">Loading new repositories</string>
     <string name="loading_more_owner_data">Loading more owner data</string>
+    <string name="getting_access_token">Getting access token</string>
     // Toast messages
     <string name="warning_message_search_repository">Error while loading repositories</string>
     <string name="query_empty_warning">Query can\'t be empty</string>
     <string name="error_loading_more_owner_data">Unable to load more data for this user</string>
     <string name="repository_language">Language</string>
+    <string name="warning_message_access_token">Unable to get access token</string>
     // AndroidManifest
     <string name="manifest_host">callback</string>
     <string name="manifest_scheme">groundzero</string>

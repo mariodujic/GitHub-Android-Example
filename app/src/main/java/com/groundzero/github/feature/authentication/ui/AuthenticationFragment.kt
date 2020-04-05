@@ -6,8 +6,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.Observer
 import com.groundzero.github.R
 import com.groundzero.github.base.BaseFragment
+import com.groundzero.github.data.Result
 import com.groundzero.github.databinding.FragmentAuthenticationBinding
 import com.groundzero.github.di.helper.injectViewModel
 
@@ -44,7 +46,24 @@ class AuthenticationFragment : BaseFragment() {
         val uri = requireActivity().intent.data
         if (viewModel.verifyOAuthResponse(uri, getString(R.string.manifest_scheme))) {
             val code = viewModel.getCode(uri!!)
-            println(code)
+
+            viewModel.getAccessToken(clientId, clientSecret, code!!, redirectUrl)
+                .observe(viewLifecycleOwner, Observer {
+                    when (it.status) {
+                        Result.Status.LOADING -> showLoadingDialog(R.string.getting_access_token)
+                        Result.Status.SUCCESS -> {
+                            cancelLoadingScreen()
+                        }
+                        Result.Status.ERROR -> {
+                            cancelLoadingScreen()
+                            if (it.message != null) {
+                                showToastMessage(it.message)
+                            } else {
+                                showToastMessage(R.string.warning_message_access_token)
+                            }
+                        }
+                    }
+                })
         }
         println(uri)
     }
