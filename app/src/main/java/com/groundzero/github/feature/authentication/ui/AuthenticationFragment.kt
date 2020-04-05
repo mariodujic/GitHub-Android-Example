@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
+import com.groundzero.github.BuildConfig
 import com.groundzero.github.R
 import com.groundzero.github.base.BaseFragment
 import com.groundzero.github.data.Result
@@ -15,8 +16,8 @@ import com.groundzero.github.di.helper.injectViewModel
 
 class AuthenticationFragment : BaseFragment() {
 
-    private val clientId = "fb983e17e40930f28a29"
-    private val clientSecret = "2f1ef8f13b359b026684d9b9b494353866bf7faf"
+    private val clientId = BuildConfig.CLIENT_ID
+    private val clientSecret = BuildConfig.CLIENT_SECRET
     private lateinit var redirectUrl: String
 
     private lateinit var viewModel: AuthenticationViewModel
@@ -65,6 +66,5 @@ class AuthenticationFragment : BaseFragment() {
                     }
                 })
         }
-        println(uri)
     }
 }
