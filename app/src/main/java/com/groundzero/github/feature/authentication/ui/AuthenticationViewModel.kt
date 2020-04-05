@@ -23,4 +23,6 @@ class AuthenticationViewModel @Inject constructor(
         oAuthCode: String,
         redirectUrl: String
     ) = repository.getAccessToken(clientId, clientSecret, oAuthCode, redirectUrl)
+
+    fun removeAccessToken() = repository.deleteAccessToken()
 }

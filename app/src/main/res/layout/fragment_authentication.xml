@@ -20,5 +20,18 @@
             android:backgroundTint="@color/white"
             app:iconTint="@color/colorPrimary"
             android:textColor="@color/colorPrimary"/>
+
+        <Button
+            android:id="@+id/continue_without_authentication"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/continue_without_authentication"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:textColor="@color/white"
+            android:layout_marginBottom="@dimen/medium_padding"
+            android:textSize="@dimen/small_text"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

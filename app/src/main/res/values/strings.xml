@@ -38,4 +38,5 @@
     // AndroidManifest
     <string name="manifest_host">callback</string>
     <string name="manifest_scheme">groundzero</string>
+    <string name="continue_without_authentication">Continue without authentication</string>
 </resources>

@@ -40,6 +40,11 @@ class AuthenticationFragment : BaseFragment() {
                     )
                 )
             }
+
+            continueWithoutAuthentication.setOnClickListener {
+                viewModel.removeAccessToken()
+                nextActivity(MainActivity::class.java)
+            }
         }.root
     }
 

@@ -15,6 +15,6 @@ interface AccessTokenDao {
     @Query("DELETE FROM access_token")
     suspend fun deleteAccessToken()
 
-    @Query("SELECT * FROM access_token WHERE id=0 LIMIT 1")
+    @Query("SELECT * FROM access_token")
     fun getAccessToken(): LiveData<AccessToken>
 }

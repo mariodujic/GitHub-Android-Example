@@ -3,6 +3,9 @@ package com.groundzero.github.feature.authentication.data
 import androidx.lifecycle.LiveData
 import com.groundzero.github.data.Result
 import com.groundzero.github.data.resultLiveDataPersistent
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers.IO
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class AuthenticationRepository @Inject constructor(
@@ -27,4 +30,8 @@ class AuthenticationRepository @Inject constructor(
         saveLocal = { dao.insertAccessToken(AccessTokenDto.fromResponse(it)) },
         observeLocal = { dao.getAccessToken() }
     )
+
+    fun deleteAccessToken() = CoroutineScope(IO).launch {
+        dao.deleteAccessToken()
+    }
 }
