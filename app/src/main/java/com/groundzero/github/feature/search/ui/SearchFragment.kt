@@ -58,7 +58,11 @@ class SearchFragment : BaseFragment(), SearchListener {
                 }
                 Result.Status.ERROR -> {
                     cancelLoadingScreen()
-                    showToastMessage(R.string.warning_message_search_repository)
+                    if(it.message != null) {
+                        showToastMessage(it.message)
+                    } else {
+                        showToastMessage(R.string.warning_message_search_repository)
+                    }
                     viewModel.isLoadingOnScroll = false
                 }
             }

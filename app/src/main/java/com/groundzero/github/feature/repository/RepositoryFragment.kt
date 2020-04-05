@@ -20,6 +20,9 @@ class RepositoryFragment : BaseFragment() {
     ): View? = FragmentRepositoryBinding.inflate(inflater, container, false).apply {
         repository = args.repository
         repositoryMoreOwner.setOnClickListener { onSearchOwnerClick(args.repository.owner!!) }
+        args.repository.htmlUrl?.let { url ->
+            repositoryExternalUrl.setOnClickListener { openUrlInBrowser(url) }
+        }
     }.root
 
 

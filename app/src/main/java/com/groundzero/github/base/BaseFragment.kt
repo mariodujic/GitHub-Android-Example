@@ -1,6 +1,8 @@
 package com.groundzero.github.base
 
 import android.content.Context
+import android.content.Intent
+import android.net.Uri
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -25,8 +27,15 @@ open class BaseFragment : Fragment(), Injectable {
     fun showToastMessage(resId: Int) =
         Toast.makeText(requireContext(), getString(resId), Toast.LENGTH_LONG).show()
 
+    fun showToastMessage(message: String) =
+        Toast.makeText(requireContext(), message, Toast.LENGTH_LONG).show()
+
     fun showLoadingDialog(resId: Int) =
         progressDialog.showDialog(requireContext(), getString(resId))
 
     fun cancelLoadingScreen() = progressDialog.cancelLoadingDialog()
+
+    fun openUrlInBrowser(url: String) {
+        startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(url)))
+    }
 }
