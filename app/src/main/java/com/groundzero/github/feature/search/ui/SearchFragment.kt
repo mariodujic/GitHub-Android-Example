@@ -39,7 +39,7 @@ class SearchFragment : BaseFragment(), SearchListener {
             implementListeners(this, it)
             recyclerViewListener(this, it)
             setSideToggleButton(this, it)
-            viewModel.setInitialQuery()
+            viewModel.setInitialQuery("Android")
         }
     }.root
 

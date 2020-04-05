@@ -12,8 +12,9 @@ import javax.inject.Inject
 class SearchViewModel @Inject constructor(private val repository: SearchRepository) : ViewModel() {
 
     var isLoadingOnScroll = false
-    var isToggleButtonShown: Boolean = false
-    private var currentPage = 1
+    var isToggleButtonShown = false
+    var currentPage = 1
+        private set
     private val queryLive = MutableLiveData<String>()
     private var sortArray = mutableListOf(
         SortType.STARS,
@@ -26,12 +27,12 @@ class SearchViewModel @Inject constructor(private val repository: SearchReposito
     }
 
     val repositoryLive = Transformations.switchMap(queryLive) { query ->
-        repository.searchQuery(query, currentPage, 20, sortTypeLive.value!!)
+        repository.searchQuery(query, currentPage, ITEMS_PER_PAGE, getSortTypeLive().value!!)
     }
 
-    fun setInitialQuery() {
+    fun setInitialQuery(query: String) {
         if (queryLive.value == null) {
-            searchRepositories("Android")
+            searchRepositories(query)
         }
     }
 
@@ -49,13 +50,21 @@ class SearchViewModel @Inject constructor(private val repository: SearchReposito
 
     fun nextSort() {
         repository.deleteData()
-        val currentIndex = sortArray.indexOf(sortTypeLive.value!!)
-        val nextSortType =
-            sortArray[if (sortArray.size != currentIndex + 1) currentIndex + 1 else 0]
-        sortTypeLive.value = nextSortType
+        sortTypeLive.value = nextSortType()
         queryLive.postValue(lastQueryValue())
     }
 
+    private fun nextSortType(): SortType {
+        val currentIndex = sortArray.indexOf(sortTypeLive.value!!)
+        return sortArray[if (sortArray.size != currentIndex + 1) currentIndex + 1 else 0]
+    }
+
+    fun getQueryLive() = queryLive
+
     private fun lastQueryValue(): String? = queryLive.value
     fun getSortTypeLive(): LiveData<SortType> = sortTypeLive
+
+    companion object {
+        const val ITEMS_PER_PAGE = 20
+    }
 }
