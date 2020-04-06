@@ -17,7 +17,7 @@ class SearchViewModel @Inject constructor(
 
     var isLoadingOnScroll = false
     var isToggleButtonShown = false
-    var currentPage = 1
+    var currentPage = INITIAL_PAGE
         private set
     private val queryLive = MutableLiveData<String>()
     private var sortArray = mutableListOf(
@@ -53,9 +53,14 @@ class SearchViewModel @Inject constructor(
     }
 
     fun nextSort() {
+        setToInitialPage()
         searchRepository.deleteData()
         sortTypeLive.value = nextSortType()
         queryLive.postValue(lastQueryValue())
+    }
+
+    private fun setToInitialPage() {
+        currentPage = INITIAL_PAGE
     }
 
     private fun nextSortType(): SortType {
@@ -77,5 +82,6 @@ class SearchViewModel @Inject constructor(
 
     companion object {
         const val ITEMS_PER_PAGE = 20
+        const val INITIAL_PAGE = 1
     }
 }
