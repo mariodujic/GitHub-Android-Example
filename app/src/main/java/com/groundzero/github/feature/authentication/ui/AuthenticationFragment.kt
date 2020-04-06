@@ -17,10 +17,7 @@ import com.groundzero.github.feature.content.common.MainActivity
 
 class AuthenticationFragment : BaseFragment() {
 
-    private val clientId = BuildConfig.CLIENT_ID
-    private val clientSecret = BuildConfig.CLIENT_SECRET
     private lateinit var redirectUrl: String
-
     private lateinit var viewModel: AuthenticationViewModel
 
     override fun onCreateView(
@@ -36,7 +33,7 @@ class AuthenticationFragment : BaseFragment() {
                 startActivity(
                     Intent(
                         Intent.ACTION_VIEW,
-                        Uri.parse(viewModel.getOAuthUrl(clientId, redirectUrl))
+                        Uri.parse(viewModel.getOAuthUrl(redirectUrl))
                     )
                 )
             }
@@ -54,7 +51,7 @@ class AuthenticationFragment : BaseFragment() {
         if (viewModel.verifyOAuthResponse(uri, getString(R.string.manifest_scheme))) {
             val code = viewModel.getCode(uri!!)
 
-            viewModel.getAccessToken(clientId, clientSecret, code!!, redirectUrl)
+            viewModel.getAccessToken(code!!, redirectUrl)
                 .observe(viewLifecycleOwner, Observer {
                     when (it.status) {
                         Result.Status.LOADING -> showLoadingDialog(R.string.getting_access_token)
