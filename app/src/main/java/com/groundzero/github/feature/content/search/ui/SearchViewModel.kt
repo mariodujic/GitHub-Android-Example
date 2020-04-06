@@ -6,10 +6,14 @@ import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
 import com.groundzero.github.feature.content.search.data.SearchRepository
 import com.groundzero.github.feature.content.search.data.SortType
+import com.groundzero.github.feature.content.user.data.UserRepository
 import javax.inject.Inject
 
 
-class SearchViewModel @Inject constructor(private val repository: SearchRepository) : ViewModel() {
+class SearchViewModel @Inject constructor(
+    private val searchRepository: SearchRepository,
+    private val userRepository: UserRepository
+) : ViewModel() {
 
     var isLoadingOnScroll = false
     var isToggleButtonShown = false
@@ -27,7 +31,7 @@ class SearchViewModel @Inject constructor(private val repository: SearchReposito
     }
 
     val repositoryLive = Transformations.switchMap(queryLive) { query ->
-        repository.searchQuery(query, currentPage, ITEMS_PER_PAGE, getSortTypeLive().value!!)
+        searchRepository.searchQuery(query, currentPage, ITEMS_PER_PAGE, getSortTypeLive().value!!)
     }
 
     fun setInitialQuery(query: String) {
@@ -38,7 +42,7 @@ class SearchViewModel @Inject constructor(private val repository: SearchReposito
 
     fun searchRepositories(queryString: String?) {
         if (queryString != null) {
-            repository.deleteData()
+            searchRepository.deleteData()
             queryLive.postValue(queryString)
         }
     }
@@ -49,7 +53,7 @@ class SearchViewModel @Inject constructor(private val repository: SearchReposito
     }
 
     fun nextSort() {
-        repository.deleteData()
+        searchRepository.deleteData()
         sortTypeLive.value = nextSortType()
         queryLive.postValue(lastQueryValue())
     }
@@ -65,8 +69,11 @@ class SearchViewModel @Inject constructor(private val repository: SearchReposito
     fun getSortTypeLive(): LiveData<SortType> = sortTypeLive
 
     fun deleteUserData() {
-        repository.deleteData()
+        userRepository.deleteAccessToken()
+        userRepository.deleteUser()
     }
+
+    fun getUserLive() = userRepository.getUser()
 
     companion object {
         const val ITEMS_PER_PAGE = 20

@@ -24,6 +24,13 @@
             app:exitAnim="@anim/slide_out_top"
             app:popEnterAnim="@anim/slide_in_top"
             app:popExitAnim="@anim/slide_out_bottom" />
+        <action
+            android:id="@+id/action_searchFragment_to_userFragment"
+            app:destination="@id/userFragment"
+            app:enterAnim="@anim/slide_in_top"
+            app:exitAnim="@anim/slide_out_bottom"
+            app:popEnterAnim="@anim/slide_in_bottom"
+            app:popExitAnim="@anim/slide_out_top" />
     </fragment>
     <fragment
         android:id="@+id/repositoryFragment"
@@ -49,5 +56,14 @@
         <argument
             android:name="owner"
             app:argType="com.groundzero.github.feature.content.owner.data.Owner" />
+    </fragment>
+    <fragment
+        android:id="@+id/userFragment"
+        android:name="com.groundzero.github.feature.content.user.ui.UserFragment"
+        android:label="fragment_user"
+        tools:layout="@layout/fragment_user" >
+        <argument
+            android:name="user"
+            app:argType="com.groundzero.github.feature.content.user.data.User" />
     </fragment>
 </navigation>

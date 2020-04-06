@@ -5,6 +5,7 @@ import com.google.gson.GsonBuilder
 import com.groundzero.github.feature.authentication.api.AuthenticationApi
 import com.groundzero.github.feature.content.owner.api.OwnerApi
 import com.groundzero.github.feature.content.search.api.SearchApi
+import com.groundzero.github.feature.content.user.api.UserApi
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
@@ -15,6 +16,13 @@ import javax.inject.Singleton
 
 @Module
 class RemoteModule {
+
+    @Provides
+    @Singleton
+    fun provideUserApi(
+        client: OkHttpClient,
+        converterFactory: GsonConverterFactory
+    ): UserApi = createApi(client, converterFactory, UserApi::class.java)
 
     @Provides
     @Singleton

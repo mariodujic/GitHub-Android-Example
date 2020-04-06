@@ -12,10 +12,12 @@ import com.groundzero.github.feature.content.owner.data.OwnerDao
 import com.groundzero.github.feature.content.search.data.Repository
 import com.groundzero.github.feature.content.search.data.RepositoryConverter
 import com.groundzero.github.feature.content.search.data.RepositoryDao
+import com.groundzero.github.feature.content.user.data.User
+import com.groundzero.github.feature.content.user.data.UserDao
 
 @TypeConverters(RepositoryConverter::class)
 @Database(
-    entities = [Repository::class, Owner::class, AccessToken::class],
+    entities = [Repository::class, Owner::class, AccessToken::class, User::class],
     exportSchema = false,
     version = 1
 )
@@ -24,6 +26,7 @@ abstract class PersistenceDatabase : RoomDatabase() {
     abstract fun getOwnerDao(): OwnerDao
     abstract fun getRepositoryDao(): RepositoryDao
     abstract fun getAccessTokeNDao(): AccessTokenDao
+    abstract fun getUserDao(): UserDao
 
     companion object {
 

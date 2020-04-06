@@ -23,6 +23,8 @@
     <string name="repository_inspect_in_browser">Open repository in browser</string>
     <string name="owner_inspect_in_browser">Open owner in browser</string>
     <string name="authenticate_user">Continue with GitHub</string>
+    <string name="logout">Logout</string>
+    <string name="continue_without_authentication">Continue without authentication</string>
     // Loading dialog messages
     <string name="loading_dialog_search_repository">Loading repositories</string>
     <string name="loading_more_repositories">Loading more repositories</string>
@@ -38,6 +40,5 @@
     // AndroidManifest
     <string name="manifest_host">callback</string>
     <string name="manifest_scheme">groundzero</string>
-    <string name="continue_without_authentication">Continue without authentication</string>
-    <string name="logout">Logout</string>
+    <string name="profile">Profile</string>
 </resources>

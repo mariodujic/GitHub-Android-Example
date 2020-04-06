@@ -17,4 +17,7 @@ interface AccessTokenDao {
 
     @Query("SELECT * FROM access_token")
     fun getAccessToken(): LiveData<AccessToken>
+
+    @Query("SELECT * FROM access_token")
+    fun getAccessTokenSync(): AccessToken?
 }

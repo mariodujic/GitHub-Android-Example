@@ -15,6 +15,7 @@ import com.groundzero.github.di.helper.injectViewModel
 import com.groundzero.github.feature.authentication.common.AuthenticationActivity
 import com.groundzero.github.feature.content.owner.data.Owner
 import com.groundzero.github.feature.content.search.data.Repository
+import com.groundzero.github.feature.content.user.data.User
 import com.groundzero.github.utils.toggleSideView
 import com.groundzero.github.view.RecyclerItemDecorator
 
@@ -36,17 +37,15 @@ class SearchFragment : BaseFragment(), SearchListener {
             )
         }
         viewModel = injectViewModel(viewModelFactory)
-        viewModel.also {
-            observeSearchQuery(it)
-            implementListeners(this, it)
-            recyclerViewListener(this, it)
-            setSideToggleButton(this, it)
-            viewModel.setInitialQuery("Android")
-        }
-        searchLogout.setOnClickListener { onLogoutClick() }
+        viewModel.setInitialQuery("Android")
+        observeSearchQuery()
+        observeUser(this)
+        implementListeners(this)
+        recyclerViewListener(this)
+        setSideToggleButton(this)
     }.root
 
-    private fun observeSearchQuery(viewModel: SearchViewModel) {
+    private fun observeSearchQuery() {
         viewModel.repositoryLive.observe(viewLifecycleOwner, Observer {
             when (it.status) {
                 Result.Status.LOADING -> {
@@ -72,7 +71,26 @@ class SearchFragment : BaseFragment(), SearchListener {
         })
     }
 
-    private fun implementListeners(binding: FragmentSearchBinding, viewModel: SearchViewModel) {
+    private fun observeUser(binding: FragmentSearchBinding) {
+        viewModel.getUserLive().observe(viewLifecycleOwner, Observer { userResult ->
+            when (userResult.status) {
+                Result.Status.LOADING -> binding.searchToolbarParent.visibility = View.GONE
+                Result.Status.SUCCESS -> {
+                    if (userResult.data != null) {
+                        binding.searchToolbarParent.visibility = View.VISIBLE
+                        binding.searchRepositoryUserProfile.setOnClickListener {
+                            onUserProfileClick(userResult.data)
+                        }
+                    }
+                }
+                Result.Status.ERROR -> {
+                    binding.searchToolbarParent.visibility = View.GONE
+                }
+            }
+        })
+    }
+
+    private fun implementListeners(binding: FragmentSearchBinding) {
         binding.searchQueryParent.setStartIconOnClickListener {
             binding.searchQuery.text.toString().also {
                 if (it != "") {
@@ -83,9 +101,10 @@ class SearchFragment : BaseFragment(), SearchListener {
                 clearSearchInputFocus(binding)
             }
         }
+        binding.searchLogout.setOnClickListener { onLogoutClick() }
     }
 
-    private fun recyclerViewListener(binding: FragmentSearchBinding, viewModel: SearchViewModel) {
+    private fun recyclerViewListener(binding: FragmentSearchBinding) {
         binding.searchRepositoryRecyclerView.addOnScrollListener(object :
             RecyclerView.OnScrollListener() {
             override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
@@ -106,7 +125,7 @@ class SearchFragment : BaseFragment(), SearchListener {
         }
     }
 
-    private fun setSideToggleButton(binding: FragmentSearchBinding, viewModel: SearchViewModel) {
+    private fun setSideToggleButton(binding: FragmentSearchBinding) {
         binding.apply {
             searchSortParent.setOnLongClickListener {
                 searchSortParent.toggleSideView(!viewModel.isToggleButtonShown).start()
@@ -127,6 +146,11 @@ class SearchFragment : BaseFragment(), SearchListener {
     private fun onLogoutClick() {
         viewModel.deleteUserData()
         nextActivity(AuthenticationActivity::class.java)
+    }
+
+    private fun onUserProfileClick(user: User) {
+        val action = SearchFragmentDirections.actionSearchFragmentToUserFragment(user)
+        findNavController().navigate(action)
     }
 
     override fun onSearchRepositoryClick(repository: Repository) {

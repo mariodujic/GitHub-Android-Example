@@ -16,5 +16,4 @@ interface RepositoryDao {
 
     @Query("SELECT * FROM repository")
     fun getRepositories(): androidx.paging.DataSource.Factory<Int, Repository>
-
 }

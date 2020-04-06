@@ -5,6 +5,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".feature.content.search.ui.SearchFragment">
+
         <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/search_toolbar_parent"
             android:layout_width="match_parent"
@@ -22,13 +23,22 @@
                     android:id="@+id/search_logout"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:text="@string/logout"
                     android:gravity="center"
-                    android:textSize="@dimen/highlighted_text"
-                    android:textColor="@color/white"/>
+                    android:text="@string/logout"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/highlighted_text" />
 
+                <TextView
+                    android:id="@+id/search_repository_user_profile"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="@string/profile"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/highlighted_text" />
             </androidx.appcompat.widget.Toolbar>
         </com.google.android.material.appbar.AppBarLayout>
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/search_repository_recycler_view"
             android:layout_width="match_parent"
@@ -61,8 +71,8 @@
                     android:layout_margin="@dimen/normal_padding"
                     android:layout_weight="1"
                     android:hint="@string/hint_search"
-                    app:layout_constraintBottom_toBottomOf="parent"
                     app:endIconMode="clear_text"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:startIconDrawable="@drawable/ic_search">
 
                     <com.google.android.material.textfield.TextInputEditText

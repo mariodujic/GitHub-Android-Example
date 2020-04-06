@@ -3,6 +3,7 @@ package com.groundzero.github.di.codemodules
 import com.groundzero.github.feature.content.owner.ui.OwnerFragment
 import com.groundzero.github.feature.content.repository.RepositoryFragment
 import com.groundzero.github.feature.content.search.ui.SearchFragment
+import com.groundzero.github.feature.content.user.ui.UserFragment
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
@@ -17,4 +18,7 @@ abstract class MainFragmentModule {
 
     @ContributesAndroidInjector
     abstract fun contributeOwnerFragment(): OwnerFragment
+
+    @ContributesAndroidInjector
+    abstract fun contributeUserFragment(): UserFragment
 }
