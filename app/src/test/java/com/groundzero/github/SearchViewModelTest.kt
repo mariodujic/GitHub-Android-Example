@@ -5,6 +5,7 @@ import com.groundzero.github.feature.content.search.data.SearchRepository
 import com.groundzero.github.feature.content.search.data.SortType
 import com.groundzero.github.feature.content.search.ui.SearchViewModel
 import com.groundzero.github.feature.content.search.ui.SearchViewModel.Companion.ITEMS_PER_PAGE
+import com.groundzero.github.feature.content.user.data.UserRepository
 import org.junit.Assert.assertEquals
 import org.junit.Before
 import org.junit.Rule
@@ -22,12 +23,15 @@ class SearchViewModelTest {
     val rule = InstantTaskExecutorRule()
 
     @Mock
-    lateinit var repository: SearchRepository
+    lateinit var searchRepository: SearchRepository
+
+    @Mock
+    lateinit var userRepository: UserRepository
     private lateinit var viewModel: SearchViewModel
 
     @Before
     fun onSetup() {
-        viewModel = SearchViewModel(repository)
+        viewModel = SearchViewModel(searchRepository, userRepository)
     }
 
     @Test
@@ -48,13 +52,13 @@ class SearchViewModelTest {
     @Test
     fun `searching new query deletes previous data from database`() {
         viewModel.searchRepositories(QUERY)
-        verify(repository, times(1)).deleteData()
+        verify(searchRepository, times(1)).deleteData()
     }
 
     @Test
     fun `searching null query does not delete previous data`() {
         viewModel.searchRepositories(null)
-        verify(repository, times(0)).deleteData()
+        verify(searchRepository, times(0)).deleteData()
     }
 
     @Test
@@ -66,7 +70,7 @@ class SearchViewModelTest {
     @Test
     fun `changing sort while searching repositories deletes previous data`() {
         viewModel.nextSort()
-        verify(repository, times(1)).deleteData()
+        verify(searchRepository, times(1)).deleteData()
     }
 
     @Test
@@ -84,13 +88,26 @@ class SearchViewModelTest {
     fun `repository should send request on query update`() {
         viewModel.setInitialQuery(QUERY)
         viewModel.repositoryLive.observeForever {}
-        verify(repository, times(1))
+        verify(searchRepository, times(1))
             .searchQuery(
                 QUERY,
                 viewModel.currentPage,
                 ITEMS_PER_PAGE,
                 viewModel.getSortTypeLive().value!!
             )
+    }
+
+    @Test
+    fun `deleting user data should remove token and user data`() {
+        viewModel.deleteUserData()
+        verify(userRepository, times(1)).deleteAccessToken()
+        verify(userRepository, times(1)).deleteUser()
+    }
+
+    @Test
+    fun `repository returns user data`() {
+        viewModel.getUserLive()
+        verify(userRepository, times(1)).getUser()
     }
 
     companion object {
