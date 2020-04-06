@@ -46,7 +46,7 @@ class SearchViewModelTest {
     fun `setting initial live data query`() {
         viewModel.repositoryLive.observeForever {}
         viewModel.setInitialQuery(QUERY)
-        assertEquals(viewModel.getQueryLive().getOrAwaitValue(2), "Android")
+        assertEquals(viewModel.getQueryLive().getOrAwaitValue(2), QUERY)
     }
 
     @Test
