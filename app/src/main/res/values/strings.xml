@@ -42,4 +42,6 @@
     <string name="manifest_host">callback</string>
     <string name="manifest_scheme">groundzero</string>
     <string name="profile">Profile</string>
+    <string name="user_followers_label">Followers</string>
+    <string name="user_following_label">Following</string>
 </resources>
