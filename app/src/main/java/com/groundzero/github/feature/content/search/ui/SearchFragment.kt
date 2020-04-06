@@ -77,8 +77,12 @@ class SearchFragment : BaseFragment(), SearchListener {
                 Result.Status.LOADING -> binding.searchToolbarParent.visibility = View.GONE
                 Result.Status.SUCCESS -> {
                     if (userResult.data != null) {
+                        binding.user = userResult.data
                         binding.searchToolbarParent.visibility = View.VISIBLE
                         binding.searchRepositoryUserProfile.setOnClickListener {
+                            onUserProfileClick(userResult.data)
+                        }
+                        binding.searchRepositoryUserAvatar.setOnClickListener {
                             onUserProfileClick(userResult.data)
                         }
                     }
