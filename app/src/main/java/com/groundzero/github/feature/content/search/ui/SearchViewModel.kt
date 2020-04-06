@@ -64,6 +64,10 @@ class SearchViewModel @Inject constructor(private val repository: SearchReposito
     private fun lastQueryValue(): String? = queryLive.value
     fun getSortTypeLive(): LiveData<SortType> = sortTypeLive
 
+    fun deleteUserData() {
+        repository.deleteData()
+    }
+
     companion object {
         const val ITEMS_PER_PAGE = 20
     }

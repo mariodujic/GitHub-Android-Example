@@ -20,6 +20,8 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity android:name=".feature.authentication.common.AuthenticationActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
 
@@ -31,7 +33,6 @@
                     android:scheme="@string/manifest_scheme" />
             </intent-filter>
         </activity>
-        <activity android:name=".feature.authentication.common.AuthenticationActivity" />
         <activity android:name=".feature.content.common.MainActivity" />
     </application>
 

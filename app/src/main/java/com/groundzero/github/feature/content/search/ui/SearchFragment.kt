@@ -12,6 +12,7 @@ import com.groundzero.github.base.BaseFragment
 import com.groundzero.github.data.Result
 import com.groundzero.github.databinding.FragmentSearchBinding
 import com.groundzero.github.di.helper.injectViewModel
+import com.groundzero.github.feature.authentication.common.AuthenticationActivity
 import com.groundzero.github.feature.content.owner.data.Owner
 import com.groundzero.github.feature.content.search.data.Repository
 import com.groundzero.github.utils.toggleSideView
@@ -20,6 +21,7 @@ import com.groundzero.github.view.RecyclerItemDecorator
 class SearchFragment : BaseFragment(), SearchListener {
 
     private val searchAdapter = SearchAdapter(this)
+    private lateinit var viewModel: SearchViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -33,7 +35,7 @@ class SearchFragment : BaseFragment(), SearchListener {
                 )
             )
         }
-        val viewModel: SearchViewModel = injectViewModel(viewModelFactory)
+        viewModel = injectViewModel(viewModelFactory)
         viewModel.also {
             observeSearchQuery(it)
             implementListeners(this, it)
@@ -41,6 +43,7 @@ class SearchFragment : BaseFragment(), SearchListener {
             setSideToggleButton(this, it)
             viewModel.setInitialQuery("Android")
         }
+        searchLogout.setOnClickListener { onLogoutClick() }
     }.root
 
     private fun observeSearchQuery(viewModel: SearchViewModel) {
@@ -58,7 +61,7 @@ class SearchFragment : BaseFragment(), SearchListener {
                 }
                 Result.Status.ERROR -> {
                     cancelLoadingScreen()
-                    if(it.message != null) {
+                    if (it.message != null) {
                         showToastMessage(it.message)
                     } else {
                         showToastMessage(R.string.warning_message_search_repository)
@@ -119,6 +122,11 @@ class SearchFragment : BaseFragment(), SearchListener {
                 searchSortType.text = sort.getType()
             })
         }
+    }
+
+    private fun onLogoutClick() {
+        viewModel.deleteUserData()
+        nextActivity(AuthenticationActivity::class.java)
     }
 
     override fun onSearchRepositoryClick(repository: Repository) {

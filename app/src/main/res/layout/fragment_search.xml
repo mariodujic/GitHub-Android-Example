@@ -5,14 +5,37 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".feature.content.search.ui.SearchFragment">
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/search_toolbar_parent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimaryDark"
+            app:layout_constraintTop_toTopOf="parent">
 
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/search_toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:background="@color/colorPrimaryDark">
+
+                <TextView
+                    android:id="@+id/search_logout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="@string/logout"
+                    android:gravity="center"
+                    android:textSize="@dimen/highlighted_text"
+                    android:textColor="@color/white"/>
+
+            </androidx.appcompat.widget.Toolbar>
+        </com.google.android.material.appbar.AppBarLayout>
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/search_repository_recycler_view"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toTopOf="@id/search_repository_parent"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/search_toolbar_parent"
             tools:itemCount="20"
             tools:listitem="@layout/item_search" />
 
