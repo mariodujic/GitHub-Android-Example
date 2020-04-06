@@ -85,6 +85,15 @@ class SearchViewModelTest {
     }
 
     @Test
+    fun `changing sort type sets current page to initial page`() {
+        viewModel.nextPage()
+        viewModel.nextPage()
+        assertEquals(viewModel.currentPage, 3)
+        viewModel.nextSort()
+        assertEquals(viewModel.currentPage, 1)
+    }
+
+    @Test
     fun `repository should send request on query update`() {
         viewModel.setInitialQuery(QUERY)
         viewModel.repositoryLive.observeForever {}
