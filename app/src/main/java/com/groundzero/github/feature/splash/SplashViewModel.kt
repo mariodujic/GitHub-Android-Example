@@ -6,6 +6,6 @@ import com.groundzero.github.feature.authentication.data.AccessToken
 import com.groundzero.github.feature.authentication.data.AccessTokenDao
 import javax.inject.Inject
 
-class SplashViewModel @Inject constructor(dao: AccessTokenDao) : ViewModel() {
-    val accessTokenLive: LiveData<AccessToken> = dao.getAccessToken()
+class SplashViewModel @Inject constructor(private val dao: AccessTokenDao) : ViewModel() {
+    fun accessTokenLive(): LiveData<AccessToken> = dao.getAccessToken()
 }

@@ -22,7 +22,7 @@ class SplashActivity : BaseActivity() {
             viewModel = injectViewModel(viewModelFactory)
             delay(1000)
             withContext(Main) {
-                viewModel.accessTokenLive.observe(this@SplashActivity, Observer {
+                viewModel.accessTokenLive().observe(this@SplashActivity, Observer {
                     nextActivity(
                         if (it != null) MainActivity::class.java else AuthenticationActivity::class.java
                     )
