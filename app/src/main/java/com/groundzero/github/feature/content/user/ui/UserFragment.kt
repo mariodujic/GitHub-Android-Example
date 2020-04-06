@@ -16,6 +16,11 @@ class UserFragment : BaseFragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? = FragmentUserBinding.inflate(inflater, container, false).apply {
-        println(args)
+        user = args.user
+        userExternalUrl.setOnClickListener {
+            args.user.htmlUrl?.let {
+                openUrlInBrowser(it)
+            }
+        }
     }.root
 }

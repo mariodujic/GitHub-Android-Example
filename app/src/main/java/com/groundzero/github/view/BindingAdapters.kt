@@ -1,5 +1,6 @@
 package com.groundzero.github.view
 
+import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
@@ -29,4 +30,12 @@ fun ImageView.setAvatar(imgUrl: String?) {
 fun TextView.setFormattedTime(time: String?) {
     if (time != null)
         text = context.getString(R.string.item_search_last_update, parseServerTime(time))
+}
+
+@BindingAdapter("setInfoVisibility")
+fun TextView.setInfoVisibility(text: String?) {
+    visibility = if (text != null && text != "")
+        View.VISIBLE
+    else
+        View.GONE
 }

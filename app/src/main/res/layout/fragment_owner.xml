@@ -53,7 +53,6 @@
                 android:layout_height="wrap_content"
                 android:padding="@dimen/medium_padding"
                 android:text="@{owner.name}"
-                android:textAllCaps="true"
                 android:textColor="@color/white"
                 android:textSize="@dimen/highlighted_text"
                 android:textStyle="bold" />
@@ -75,7 +74,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="@dimen/medium_padding"
-                    android:text="@string/owner_type"
+                    android:text="@string/type_label"
                     android:textAllCaps="true"
                     android:textColor="@color/black" />
 
@@ -95,7 +94,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="@dimen/medium_padding"
-                    android:text="@string/owner_company"
+                    android:text="@string/company_label"
                     android:textAllCaps="true"
                     android:textColor="@color/black" />
 
@@ -115,7 +114,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="@dimen/medium_padding"
-                    android:text="@string/owner_location"
+                    android:text="@string/location_label"
                     android:textAllCaps="true"
                     android:textColor="@color/black" />
 
@@ -135,7 +134,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="@dimen/medium_padding"
-                    android:text="@string/owner_email"
+                    android:text="@string/email_label"
                     android:textAllCaps="true"
                     android:textColor="@color/black" />
 
@@ -155,7 +154,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="@dimen/medium_padding"
-                    android:text="@string/owner_bio"
+                    android:text="@string/bio_label"
                     android:textAllCaps="true"
                     android:textColor="@color/black" />
 

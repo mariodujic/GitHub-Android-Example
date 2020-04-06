@@ -3,6 +3,7 @@
     <dimen name="medium_padding">16dp</dimen>
     <dimen name="normal_padding">8dp</dimen>
     <dimen name="minimal_padding">4dp</dimen>
+    <dimen name="title_text">20sp</dimen>
     <dimen name="highlighted_text">18sp</dimen>
     <dimen name="normal_text">17sp</dimen>
     <dimen name="small_text">13sp</dimen>

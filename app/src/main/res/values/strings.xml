@@ -12,16 +12,17 @@
     <string name="label_owner">"Owner: "</string>
     <string name="label_repository_name">"Repository name: "</string>
     <string name="label_sort">Sort by</string>
-    <string name="owner_type">Type</string>
-    <string name="owner_is_admin">Admin</string>
-    <string name="owner_company">Company</string>
-    <string name="owner_location">Location</string>
-    <string name="owner_email">Email</string>
-    <string name="owner_bio">Bio</string>
+    <string name="type_label">Type</string>
+    <string name="admin_label">Admin</string>
+    <string name="company_label">Company</string>
+    <string name="location_label">Location</string>
+    <string name="email_label">Email</string>
+    <string name="bio_label">Bio</string>
     // Buttons
     <string name="repository_more_on_owner">More on owner</string>
     <string name="repository_inspect_in_browser">Open repository in browser</string>
     <string name="owner_inspect_in_browser">Open owner in browser</string>
+    <string name="user_inspect_in_browser">Open profile in browser</string>
     <string name="authenticate_user">Continue with GitHub</string>
     <string name="logout">Logout</string>
     <string name="continue_without_authentication">Continue without authentication</string>
