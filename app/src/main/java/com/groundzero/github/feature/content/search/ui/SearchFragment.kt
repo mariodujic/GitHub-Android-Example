@@ -41,7 +41,6 @@ class SearchFragment : BaseFragment(), SearchListener {
         observeSearchQuery()
         observeUser(this)
         implementListeners(this)
-        recyclerViewListener(this)
         setSideToggleButton(this)
     }.root
 
@@ -106,9 +105,7 @@ class SearchFragment : BaseFragment(), SearchListener {
             }
         }
         binding.searchLogout.setOnClickListener { onLogoutClick() }
-    }
 
-    private fun recyclerViewListener(binding: FragmentSearchBinding) {
         binding.searchRepositoryRecyclerView.addOnScrollListener(object :
             RecyclerView.OnScrollListener() {
             override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
