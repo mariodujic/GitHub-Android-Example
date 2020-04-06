@@ -19,14 +19,14 @@ class RepositoryFragment : BaseFragment() {
         savedInstanceState: Bundle?
     ): View? = FragmentRepositoryBinding.inflate(inflater, container, false).apply {
         repository = args.repository
-        repositoryMoreOwner.setOnClickListener { onSearchOwnerClick(args.repository.owner!!) }
+        repositoryMoreOwner.setOnClickListener { onRepositoryOwnerClick(args.repository.owner!!) }
         args.repository.htmlUrl?.let { url ->
             repositoryExternalUrl.setOnClickListener { openUrlInBrowser(url) }
         }
     }.root
 
 
-    private fun onSearchOwnerClick(owner: Owner) {
+    private fun onRepositoryOwnerClick(owner: Owner) {
         val action = RepositoryFragmentDirections.actionRepositoryFragmentToOwnerFragment(owner)
         findNavController().navigate(action)
     }
