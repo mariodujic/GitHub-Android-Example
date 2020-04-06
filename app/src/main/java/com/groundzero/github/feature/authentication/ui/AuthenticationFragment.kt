@@ -51,13 +51,11 @@ class AuthenticationFragment : BaseFragment() {
     override fun onResume() {
         super.onResume()
         val uri = requireActivity().intent.data
-        println(uri)
         if (viewModel.verifyOAuthResponse(uri, getString(R.string.manifest_scheme))) {
             val code = viewModel.getCode(uri!!)
 
             viewModel.getAccessToken(clientId, clientSecret, code!!, redirectUrl)
                 .observe(viewLifecycleOwner, Observer {
-                    println(it)
                     when (it.status) {
                         Result.Status.LOADING -> showLoadingDialog(R.string.getting_access_token)
                         Result.Status.SUCCESS -> {
