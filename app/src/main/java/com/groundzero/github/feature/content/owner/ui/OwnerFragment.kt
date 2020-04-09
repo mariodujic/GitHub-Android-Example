@@ -8,7 +8,7 @@ import androidx.lifecycle.Observer
 import androidx.navigation.fragment.navArgs
 import com.groundzero.github.R
 import com.groundzero.github.base.BaseFragment
-import com.groundzero.github.data.Result
+import com.groundzero.github.data.ResultData
 import com.groundzero.github.databinding.FragmentOwnerBinding
 import com.groundzero.github.di.helper.injectViewModel
 
@@ -25,20 +25,16 @@ class OwnerFragment : BaseFragment() {
 
         viewModel = injectViewModel(viewModelFactory)
         viewModel.getOwner(args.owner.name!!).observe(viewLifecycleOwner, Observer {
-            when (it.status) {
-                Result.Status.LOADING -> showLoadingDialog(R.string.loading_more_owner_data)
-                Result.Status.SUCCESS -> {
+            when (it) {
+                is ResultData.Loading -> showLoadingDialog(R.string.loading_more_owner_data)
+                is ResultData.Success -> {
                     cancelLoadingScreen()
-                    if (it.data != null) {
-                        owner = it.data
+                    if (it.value != null) {
+                        owner = it.value
                     }
                 }
-                Result.Status.ERROR -> {
-                    if (it.message != null) {
-                        showToastMessage(it.message)
-                    } else {
-                        showToastMessage(R.string.error_loading_more_owner_data)
-                    }
+                is ResultData.Failure -> {
+                    showToastMessage(it.message)
                     cancelLoadingScreen()
                 }
             }

@@ -2,7 +2,7 @@ package com.groundzero.github
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.MutableLiveData
-import com.groundzero.github.data.Result
+import com.groundzero.github.data.ResultData
 import com.groundzero.github.feature.content.owner.data.Owner
 import com.groundzero.github.feature.content.owner.data.OwnerRepository
 import com.groundzero.github.feature.content.owner.ui.OwnerViewModel
@@ -40,7 +40,7 @@ class OwnerViewModelTest {
 
     @Test
     fun `live data returning correct value`() {
-        val ownerLiveData = MutableLiveData<Result<Owner>>()
+        val ownerLiveData = MutableLiveData<ResultData<Owner>>()
         ownerLiveData.value = result
         `when`(repository.getOwner(USERNAME)).thenReturn(ownerLiveData)
         assertEquals(viewModel.getOwner(USERNAME).value, result)
@@ -48,6 +48,6 @@ class OwnerViewModelTest {
 
     companion object {
         const val USERNAME = "John"
-        private val result = Result.success(Owner(0))
+        private val result = ResultData.success(Owner(0))
     }
 }

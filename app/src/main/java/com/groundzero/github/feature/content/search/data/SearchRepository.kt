@@ -3,7 +3,6 @@ package com.groundzero.github.feature.content.search.data
 import androidx.lifecycle.LiveData
 import androidx.paging.LivePagedListBuilder
 import androidx.paging.PagedList
-import com.groundzero.github.data.Result
 import com.groundzero.github.data.resultLiveDataPersistent
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers.IO
@@ -20,8 +19,7 @@ class SearchRepository @Inject constructor(
         page: Int,
         perPage: Int,
         sortType: SortType
-    ): LiveData<Result<PagedList<Repository>>> =
-        resultLiveDataPersistent(
+    ) = resultLiveDataPersistent(
             networkCall = { dataSource.searchQuery(query, page, perPage, sortType) },
             saveLocal = { repositoryDao.insertRepositories(it.repositories) },
             observeLocal = {

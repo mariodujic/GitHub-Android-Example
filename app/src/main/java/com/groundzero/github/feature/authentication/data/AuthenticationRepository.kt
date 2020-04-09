@@ -1,7 +1,6 @@
 package com.groundzero.github.feature.authentication.data
 
 import androidx.lifecycle.LiveData
-import com.groundzero.github.data.Result
 import com.groundzero.github.data.resultLiveDataPersistent
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers.IO
@@ -18,7 +17,7 @@ class AuthenticationRepository @Inject constructor(
         clientSecret: String,
         oAuthCode: String,
         redirectUrl: String
-    ): LiveData<Result<AccessToken>> = resultLiveDataPersistent(
+    ) = resultLiveDataPersistent(
         networkCall = {
             dataSource.getAccessToken(
                 clientId,

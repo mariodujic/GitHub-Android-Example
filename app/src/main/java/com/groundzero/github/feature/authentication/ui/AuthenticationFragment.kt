@@ -10,7 +10,7 @@ import androidx.lifecycle.Observer
 import com.groundzero.github.BuildConfig
 import com.groundzero.github.R
 import com.groundzero.github.base.BaseFragment
-import com.groundzero.github.data.Result
+import com.groundzero.github.data.ResultData
 import com.groundzero.github.databinding.FragmentAuthenticationBinding
 import com.groundzero.github.di.helper.injectViewModel
 import com.groundzero.github.feature.content.common.MainActivity
@@ -53,19 +53,15 @@ class AuthenticationFragment : BaseFragment() {
 
             viewModel.getAccessToken(code!!, redirectUrl)
                 .observe(viewLifecycleOwner, Observer {
-                    when (it.status) {
-                        Result.Status.LOADING -> showLoadingDialog(R.string.getting_access_token)
-                        Result.Status.SUCCESS -> {
+                    when (it) {
+                        is ResultData.Loading -> showLoadingDialog(R.string.getting_access_token)
+                        is ResultData.Success -> {
                             cancelLoadingScreen()
                             nextActivity(MainActivity::class.java)
                         }
-                        Result.Status.ERROR -> {
+                        is ResultData.Failure -> {
                             cancelLoadingScreen()
-                            if (it.message != null) {
-                                showToastMessage(it.message)
-                            } else {
-                                showToastMessage(R.string.warning_message_access_token)
-                            }
+                            showToastMessage(it.message)
                         }
                     }
                 })

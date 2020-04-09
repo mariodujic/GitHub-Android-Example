@@ -9,7 +9,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.groundzero.github.R
 import com.groundzero.github.base.BaseFragment
-import com.groundzero.github.data.Result
+import com.groundzero.github.data.ResultData
 import com.groundzero.github.databinding.FragmentSearchBinding
 import com.groundzero.github.di.helper.injectViewModel
 import com.groundzero.github.feature.authentication.common.AuthenticationActivity
@@ -46,24 +46,18 @@ class SearchFragment : BaseFragment(), SearchListener {
 
     private fun observeSearchQuery() {
         viewModel.repositoryLive.observe(viewLifecycleOwner, Observer {
-            when (it.status) {
-                Result.Status.LOADING -> {
-                    showLoadingDialog(R.string.loading_dialog_search_repository)
-                }
-                Result.Status.SUCCESS -> {
+            when (it) {
+                is ResultData.Loading -> showLoadingDialog(R.string.loading_dialog_search_repository)
+                is ResultData.Success -> {
                     cancelLoadingScreen()
-                    if (it.data != null) {
-                        searchAdapter.submitList(it.data)
+                    if (it.value != null) {
+                        searchAdapter.submitList(it.value)
                     }
                     viewModel.isLoadingOnScroll = false
                 }
-                Result.Status.ERROR -> {
+                is ResultData.Failure -> {
                     cancelLoadingScreen()
-                    if (it.message != null) {
-                        showToastMessage(it.message)
-                    } else {
-                        showToastMessage(R.string.warning_message_search_repository)
-                    }
+                    showToastMessage(it.message)
                     viewModel.isLoadingOnScroll = false
                 }
             }
@@ -72,21 +66,21 @@ class SearchFragment : BaseFragment(), SearchListener {
 
     private fun observeUser(binding: FragmentSearchBinding) {
         viewModel.getUserLive().observe(viewLifecycleOwner, Observer { userResult ->
-            when (userResult.status) {
-                Result.Status.LOADING -> binding.searchToolbarParent.visibility = View.GONE
-                Result.Status.SUCCESS -> {
-                    if (userResult.data != null) {
-                        binding.user = userResult.data
+            when (userResult) {
+                is ResultData.Loading -> binding.searchToolbarParent.visibility = View.GONE
+                is ResultData.Success -> {
+                    if (userResult.value != null) {
+                        binding.user = userResult.value
                         binding.searchToolbarParent.visibility = View.VISIBLE
                         binding.searchRepositoryUserProfile.setOnClickListener {
-                            onUserProfileClick(userResult.data)
+                            onUserProfileClick(userResult.value)
                         }
                         binding.searchRepositoryUserAvatar.setOnClickListener {
-                            onUserProfileClick(userResult.data)
+                            onUserProfileClick(userResult.value)
                         }
                     }
                 }
-                Result.Status.ERROR -> {
+                is ResultData.Failure -> {
                     binding.searchToolbarParent.visibility = View.GONE
                 }
             }
